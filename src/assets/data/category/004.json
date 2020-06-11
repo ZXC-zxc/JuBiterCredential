@@ -1,0 +1,58 @@
+{
+     "code":"001",
+     "List": [
+          {
+			    "codeList_id":"cateList1",
+                "title":"快速入门",
+          		"articleListItem":[
+          			{
+          				"cate_id":"cate001",
+          				"article":"如何创建软件钱包？"
+          			},
+          			{
+          				"cate_id":"cate002",
+          				"article":"如何创建硬件钱包？"
+          			},
+          			{
+          				"cate_id":"cate003",
+          				"article":"如何导入钱包?"
+          			},
+          			{
+          				"cate_id":"cate004",
+          				"article":"如何恢复钱包？"
+          			},
+          			{
+          				"cate_id":"cate005",
+          				"article":"如何搜索添加代币？"
+          			}
+          		]
+           },
+           {
+				"title":"初阶教程",
+				"codeList_id":"cateList2",
+				"articleListItem": [
+					{
+						"cate_id":"cate006",
+						"article":"如何使用 JuBiter 转账/收款? "
+					},
+					{
+						"cate_id":"cate007",
+						"article":"如何搜索添加代币？"
+					},
+					{
+						"cate_id":"cate008",
+						"article":"如何查看行情？"
+					},
+					{
+						"cate_id":"cate009",
+						"article":"如何给我们反馈宝贵的问题和建议？"
+					},
+					{
+						"cate_id":"cate010",
+						"article":"如何确保我们的资产安全？"
+					}
+				]
+           }
+		
+    ]
+}
