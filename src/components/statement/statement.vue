@@ -38,6 +38,11 @@
 		height: 100%;
 		padding: 60px 44px;
 		box-sizing: border-box;
+		section{
+			height: 94%;
+			overflow: scroll;
+			margin-top: 30px;
+		}
 	}
 </style>
 

@@ -1,9 +1,28 @@
 <!-- 使用权 -->
+<!-- 使用权 -->
 <template>
-	<h2>22222</h2>
+	<div>
+		<Table :tableData="tableData"></Table>
+	</div>
 </template>
 
 <script>
+	import Table from "@/components/common/table.vue"
+	var requireTableData = require('@/assets/data/table2.json')
+	export default {
+		
+		components:{
+			Table
+		},
+		created() {
+			this.tableData=requireTableData
+		},
+		data() {
+		  return {
+				tableData:""
+		  }
+		}
+	}
 </script>
 
 <style>

@@ -1,10 +1,15 @@
 <!-- 所有权 -->
 <template>
-	<h1>111111{{claims.txs}}</h1>
+	<!-- <h1>111111{{claims.txs}}</h1> -->
+	<div>
+		<Table :tableData="tableData"></Table>
+	</div>
 </template>
 
 <script>
     import axios from "axios"
+	import Table from "@/components/common/table.vue"
+	var requireTableData = require('@/assets/data/table2.json')
 	export default {
 		data: function() {
 			return {
@@ -12,8 +17,16 @@
 				count: 0,
 				page_number: 1,
 				page_total: 0,
-				limit: 10
+				limit: 10,
+				
+				tableData:""  
 			}
+		},
+		components:{
+			Table
+		},
+		created() {
+			this.tableData=requireTableData
 		},
 		async mounted() {
 			await this.fetchClaims()

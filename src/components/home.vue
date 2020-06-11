@@ -14,7 +14,7 @@
 
 <script>
 	
-	const categoryData = require('@/assets/data/category/001.json')  
+	// const categoryData = require('@/assets/data/category/001.json')  
 	
 	export default {
 		data: function() {
