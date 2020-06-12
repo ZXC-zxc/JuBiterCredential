@@ -28,49 +28,27 @@ export default {
     fetchApplys() {
       axios
         .post(
-          "jubiter-credential-web/admin/shiro/device/login.action",
+          "jubiter-credential-web/admin/apply/list.action",
           {
-            data: { deviceSn: "JUB111" }
+            data: {
+              pageSize: 10,
+              pageNumber: 1,
+              type: "initiate"
+            }
           },
           {
             headers: {
               "Access-Control-Allow-Origin": "*", //解决cors头问题
               "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
+              "Content-Type": "application/json" //将表单数据传递转化为request payload类型
             },
             withCredentials: true
           }
         )
         .then(function(response) {
           var res = response.data;
-          if (res.code == "ok-000000") {
-            axios
-              .post(
-                "jubiter-credential-web/admin/apply/list.action",
-                {
-                  data: {
-                    pageSize: 10,
-                    pageNumber: 1,
-                    type: "initiate"
-                  }
-                },
-                {
-                  headers: {
-                    "Access-Control-Allow-Origin": "*", //解决cors头问题
-                    "Access-Control-Allow-Credentials": "true", //解决session问题
-                    "Content-Type": "application/json" //将表单数据传递转化为request payload类型
-                  },
-                  withCredentials: true
-                }
-              )
-              .then(function(response) {
-                var res = response.data;
-                alert(res);
-              })
-              .catch(function(error) {
-                alert(error);
-              });
-          }
+          applys = res.list;
+          total = res.total;
         })
         .catch(function(error) {
           alert(error);
