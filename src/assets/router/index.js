@@ -4,9 +4,16 @@ import VueRouter from "vue-router";
 // import index from '@/pages/index/index.vue'
 import home from '@/components/home.vue'
 import index from '@/components/index.vue'
+
+//著作权
 import copyright from '@/components/copyright/copyrightView.vue'
 import owner from '@/components/copyright/ownership.vue'
 import use from '@/components/copyright/rightUse.vue'
+import copyrightAdd from '@/components/copyright/add.vue'
+import certificate from '@/components/copyright/certificate.vue'  //存证证书
+import licensed from '@/components/copyright/toLicensed.vue'  //授权给
+import exhibit from '@/components/copyright/exhibit.vue'  //出示
+
 
 // 我的声明
 import statement from '@/components/statement/statement.vue'
@@ -54,6 +61,46 @@ const routes = [
 			},
 		]
 	},
+	{
+		path: '/Jubiter/cz/copyright/add',  
+		name: 'copyrightAdd',
+		component: copyrightAdd,
+		
+	},
+	//证书
+	{
+		path: '/Jubiter/cz/copyright/certificate/:id',   //参数:表格数据ID
+		name: 'certificate',
+		component: certificate,
+		// children: [
+		// 	{
+		// 		path: 'licensed',
+		// 		name: 'licensed',
+		// 		components: {
+		// 			cert: licensed
+		// 		}
+		// 	},
+			// {
+			// 	path: 'licensed',    //授权给
+			// 	name: 'licensed',
+			// 	components:licensed
+			// }
+		// ] 
+	},
+	// 授权给
+	{
+		path: '/Jubiter/cz/copyright/certificate/:id/licensed',  
+		name: 'licensed',
+		component: licensed,
+	},
+	//出示 exhibit--
+	{
+		path: '/Jubiter/cz/copyright/certificate/:id/exhibit',  
+		name: 'exhibit',
+		component: exhibit,
+	},
+	
+	
 	{
 		path: '/Jubiter/cz/statement',  
 		name: 'statement',

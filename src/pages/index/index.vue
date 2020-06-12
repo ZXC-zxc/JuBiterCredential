@@ -62,6 +62,7 @@
 			justify-content: flex-start;
 			section{
 				width:calc(100% - 160px);
+				// position: relative;
 				// padding: 30px;
 			}
 		}
