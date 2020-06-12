@@ -8,9 +8,9 @@ Vue.use(VueAxios, axios)
 // 请求超时
 axios.defaults.timeout = 5000
 
-let baseUrl="/hy"
-if(process.env.NODE_ENV=="production"){
-	baseUrl=process.env.VUE_APP_URL
+let baseUrl = "/hy"
+if (process.env.NODE_ENV == "production") {
+	baseUrl = process.env.VUE_APP_URL
 }
 
 //设置默认请求url
@@ -23,10 +23,10 @@ console.log(axios.defaults.baseURL)
 // 添加请求拦截器
 axios.interceptors.request.use((config) => {
 	const actNo = process.env.VUE_APP_ACT_NO
-	let accessToken = localStorage.getItem(actNo+'-actToken');
-	accessToken="scan"
-	const userAgent=navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
-	const time=new Date().getTime();
+	let accessToken = localStorage.getItem(actNo + '-actToken');
+	accessToken = "scan"
+	const userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+	const time = new Date().getTime();
 	//文件上传
 	if (config.headers['Content-Type'] == 'multipart/form-data') {
 		config.data.set('accessToken', accessToken);
@@ -37,14 +37,36 @@ axios.interceptors.request.use((config) => {
 	}
 	//判断请求的类型：如果是post请求就把默认参数拼到data里面；如果是get请求就拼到params里面
 	if (config.method === 'post') {
-		config.data = qs.stringify({
-			accessToken: accessToken,
-			state: accessToken,
-			userAgent: userAgent,
-			time: time,
-			...config.data.data
-			//config.data.data
-		})
+		alert(config.headers['Content-Type'])
+		if (config.headers['Content-Type'] == 'application/x-www-form-urlencoded') {
+			config.data = qs.stringify({
+				accessToken: accessToken,
+				state: accessToken,
+				userAgent: userAgent,
+				time: time,
+				...config.data.data
+				//config.data.data
+			})
+		} else if (config.headers['Content-Type'] == 'application/json') {
+			config.data = {
+				accessToken: accessToken,
+				state: accessToken,
+				userAgent: userAgent,
+				time: time,
+				...config.data.data
+				//config.data.data
+			}
+		} else {
+			config.data = qs.stringify({
+				accessToken: accessToken,
+				state: accessToken,
+				userAgent: userAgent,
+				time: time,
+				...config.data.data
+				//config.data.data
+			})
+		}
+
 	} else if (config.method === 'get') {
 		config.params = {
 			accessToken: accessToken,
@@ -57,10 +79,10 @@ axios.interceptors.request.use((config) => {
 	return config;
 })
 // 添加响应拦截器
-axios.interceptors.response.use(function(response) {
+axios.interceptors.response.use(function (response) {
 	if (response.status == 200) {
 		return response;
-	} 
+	}
 }, (error) => {
 	var config = error.config;
 	if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
@@ -73,12 +95,12 @@ axios.interceptors.response.use(function(response) {
 		}
 		config.__retryCount += 1;
 		//再次发送请求
-		var newHttp = new Promise(function(resolve) { 
-			setTimeout(function() {
+		var newHttp = new Promise(function (resolve) {
+			setTimeout(function () {
 				resolve();
-			}, axios.defaults.retryDelay || 1);                 
+			}, axios.defaults.retryDelay || 1);
 		})
-		return newHttp.then(function() {
+		return newHttp.then(function () {
 			return axios(config)
 		})
 	}

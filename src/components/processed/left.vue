@@ -36,7 +36,7 @@ export default {
             headers: {
               "Access-Control-Allow-Origin": "*", //解决cors头问题
               "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" //将表单数据传递转化为request payload类型
+              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
             },
             withCredentials: true
           }
@@ -48,15 +48,17 @@ export default {
               .post(
                 "jubiter-credential-web/admin/apply/list.action",
                 {
-                  pageSize: 10,
-                  pageNumber: 1,
-                  type: "initiate"
+                  data: {
+                    pageSize: 10,
+                    pageNumber: 1,
+                    type: "initiate"
+                  }
                 },
                 {
                   headers: {
                     "Access-Control-Allow-Origin": "*", //解决cors头问题
                     "Access-Control-Allow-Credentials": "true", //解决session问题
-                    "Content-Type": "application/json; charset=UTF-8" //将表单数据传递转化为request payload类型
+                    "Content-Type": "application/json" //将表单数据传递转化为request payload类型
                   },
                   withCredentials: true
                 }
