@@ -28,6 +28,22 @@
 		
 		},
 		mounted() {
+			let self = this;
+			let interval = setInterval(function(){ 				
+				self.$socketApi.jubiterOper.getSerialNumber()
+				.then((sn)=>{
+					if(sn == "")return;
+					alert(sn);
+					clearInterval(interval);
+					self.$router.push({
+					path: "/Jubiter/cz/copyright"
+				});
+				})				
+				.catch((code, msg) =>{
+					console.log('no key');
+				}); }, 
+				3000);
+
 			
 		},
 		methods:{
