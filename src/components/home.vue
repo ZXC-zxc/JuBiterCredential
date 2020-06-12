@@ -47,7 +47,7 @@ export default {
         .post(
           "jubiter-credential-web/admin/shiro/device/login.action",
           {
-            data: { deviceSn: "JUB111" }
+            data: { deviceSn: "JUBLD20051200001" }
           },
           {
             headers: {
