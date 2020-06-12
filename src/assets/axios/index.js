@@ -27,6 +27,12 @@ axios.interceptors.request.use((config) => {
 	accessToken = "scan"
 	const userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
 	const time = new Date().getTime();
+	let token = window.localStorage.getItem("accessToken")
+	if (token) {
+		alert(token)
+		//将token放到请求头发送给服务器,将tokenkey放在请求头中
+		config.headers.accessToken = token;
+	}
 	//文件上传
 	if (config.headers['Content-Type'] == 'multipart/form-data') {
 		config.data.set('accessToken', accessToken);
@@ -37,7 +43,6 @@ axios.interceptors.request.use((config) => {
 	}
 	//判断请求的类型：如果是post请求就把默认参数拼到data里面；如果是get请求就拼到params里面
 	if (config.method === 'post') {
-		alert(config.headers['Content-Type'])
 		if (config.headers['Content-Type'] == 'application/x-www-form-urlencoded') {
 			config.data = qs.stringify({
 				accessToken: accessToken,
