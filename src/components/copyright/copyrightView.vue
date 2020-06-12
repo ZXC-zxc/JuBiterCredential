@@ -1,11 +1,11 @@
 <template>
 	<div class="copyrightView">
+		<div class="icon" v-show="iconShow">
+			<router-link to="/Jubiter/cz/copyright/add"><img src="../../assets/images/icon/add.png"/></router-link>
+			<img src="../../assets/images/icon/message.png"/>
+		</div>
 		<tab :first="first" :second="second"></tab>
-		<!-- <div class="tabBar">
-			<router-link to="/Jubiter/cz/copyright/"  id="owner" :class="[state=='owner'?'active':'tab']">我的所有权</router-link>
-			<router-link to="/Jubiter/cz/copyright/use" id="use" :class="[state=='use'?'active':'tab']">我的使用权</router-link>
-		</div> -->
-		<!-- <router-link to="/JuBiter/cz/index/owner"></router-link> -->
+		
 		<section>
 			<router-view name="copyright"></router-view>
 		</section>	
@@ -17,8 +17,7 @@
 	export default {
 		data: function() {
 			return {
-				// firstPath:'/Jubiter/cz/copyright/',
-				// secondPath:'/Jubiter/cz/copyright/use',
+				iconShow:false,
 				first:{
 					path:'/Jubiter/cz/copyright/',
 					name:'我的所有权'
@@ -33,19 +32,16 @@
 			tab
 		},
 		
-		// watch: {
-			
-		// 	$route(to, from) {
-		// 		if (to.path == this.firstPath ) {
-		// 			this.state = "first"
-		// 			alert(this.state)
-		// 		}
-		// 		if (to.path == this.senondPath) {
-		// 			this.state = "second"
-		// 			alert(this.state)
-		// 		}
-		// 	}
-		// },
+		watch: {
+			$route(to,from){
+				if(to.path == this.second.path){
+					this.iconShow = true
+				}
+				else{
+					this.iconShow = false
+				}
+			}
+		},
 	}
 </script>
 
@@ -59,10 +55,21 @@
 		height: 100%;
 		padding: 60px 44px;
 		box-sizing: border-box;
+		position: relative;
 		section{
 			height: 95%;
 			overflow: scroll;
 			margin-top: 30px;
+		}
+		.icon{
+			position: absolute;
+			right: 40px;
+			
+			img{
+				width: 28px;
+				margin-right: 20px;
+				box-shadow: 0px 0px 21px rgba(0,0,0,.08);
+			}
 		}
 	}
 </style>
