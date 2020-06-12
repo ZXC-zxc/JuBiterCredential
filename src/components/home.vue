@@ -29,11 +29,35 @@ export default {
         .getSerialNumber()
         .then(sn => {
           if (sn == "") return;
-          alert(sn);
           clearInterval(interval);
-          self.$router.push({
-            path: "/Jubiter/cz/copyright"
-          });
+      axios
+        .post(
+          "jubiter-credential-web/admin/shiro/device/login.action",
+          {
+            data: { deviceSn:sn }
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*", //解决cors头问题
+              "Access-Control-Allow-Credentials": "true", //解决session问题
+              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
+            },
+            withCredentials: true
+          }
+        )
+        .then(function(response) {
+          var res = response.data;
+          if (res.code == "ok-000000") {
+            self.$router.push({
+              path: "/Jubiter/cz/copyright"
+            });
+          } else {
+            alert(respresonse.msg);
+          }
+        })
+        .catch(function(error) {
+          alert(error);
+        });
         })
         .catch((code, msg) => {
           console.log("no key");
