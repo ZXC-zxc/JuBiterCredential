@@ -5,7 +5,7 @@
       <span>{{ total }}</span>
     </div>
     <ul>
-      <li class="active">{{ applys.list }}</li>
+      <li class="active">{{ applys }}</li>
     </ul>
   </section>
 </template>
@@ -26,6 +26,7 @@ export default {
   beforeCreate: function() {},
   methods: {
     fetchApplys() {
+      var self = this;
       axios
         .post(
           "jubiter-credential-web/admin/apply/list.action",
@@ -47,8 +48,8 @@ export default {
         )
         .then(function(response) {
           var res = response.data;
-          applys = res.list;
-          total = res.total;
+          self.applys = res.list;
+          self.total = res.total;
         })
         .catch(function(error) {
           alert(error);
