@@ -13,9 +13,7 @@
 </template>
 
 <script>
-	
-	// const categoryData = require('@/assets/data/category/001.json')  
-	
+
 	export default {
 		data: function() {
 			return {
@@ -70,6 +68,7 @@
 		justify-content: center;
 		align-items: center;
 		background: url(../assets/images/home/bg.png);
+		overflow: hidden;
 		.imgDiv{
 			width: 100%;
 			margin-top: -5%;
@@ -78,21 +77,24 @@
 			position: relative;
 			div{
 				position: absolute;
-				position: absolute;
-				/* left: 80.5%; */
-				/* top: 58.6%; */
-				height: 19.5%;
+				/* left: 81.5%; */
+				top: 59.7%;
+				height: 68px;
 				/* transform: translateX(-50%); */
 				/* margin-left: 30%; */
-				margin-left: calc(100% * 0.161);
+				/* margin-left: calc(100% * 0.161); */
+				margin-left: 418px;
+				animation:myfirst 1.5s;
 				img{
 					height: 100%;
 				}
 			}
 		}
 		.hardware{
-			width: 40%;
-			max-width: 610px;
+			width: 570px;
+			// width: 40%;
+			// max-width: 610px;
+			// min-width: 500px;
 		}
 		h3{
 			color: white;
@@ -112,10 +114,10 @@
 	
 	@keyframes myfirst
 	{
-		0%   {background:red; left:0px; top:0px;}
-		25%  {background:yellow; left:200px; top:0px;}
-		50%  {background:blue; left:200px; top:200px;}
-		75%  {background:green; left:0px; top:200px;}
-		100% {background:red; left:0px; top:0px;}
+		0%   {margin-left: 1049px;}
+		// 25%  {margin-left: 1649px;}
+		// 50%  {margin-left: 1249px;}
+		// 75%  {margin-left: 849px;}
+		100% {margin-left: 418px;}
 	}
 </style>

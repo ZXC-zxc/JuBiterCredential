@@ -1,8 +1,8 @@
 <template>
 	<div class="copyrightView">
-		<div class="icon" v-show="iconShow">
-			<router-link to="/Jubiter/cz/copyright/add"><img src="../../assets/images/icon/add.png"/></router-link>
-			<img src="../../assets/images/icon/message.png"/>
+		<div class="icon" >
+			<router-link to="/Jubiter/cz/copyright/owner/add"><img src="../../assets/images/icon/add.png" v-show="icon1Show"/></router-link>
+			<img src="../../assets/images/icon/message.png" v-show="icon2Show"/>
 		</div>
 		<tab :first="first" :second="second"></tab>
 		
@@ -17,7 +17,8 @@
 	export default {
 		data: function() {
 			return {
-				iconShow:false,
+				icon1Show:true,
+				icon2Show:false,
 				first:{
 					path:'/Jubiter/cz/copyright/',
 					name:'我的所有权'
@@ -34,11 +35,13 @@
 		
 		watch: {
 			$route(to,from){
-				if(to.path == this.second.path){
-					this.iconShow = true
+				if(to.path == this.first.path){
+					this.icon1Show = true
+					this.icon2Show = false
 				}
 				else{
-					this.iconShow = false
+					this.icon1Show = false
+					this.icon2Show = true
 				}
 			}
 		},

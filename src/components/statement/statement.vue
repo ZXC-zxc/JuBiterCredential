@@ -1,5 +1,8 @@
 <template>
 	<div class="statementView">
+		<div class="icon" v-show="iconShow">
+			<router-link to="/Jubiter/cz/statement/add"><img src="@/assets/images/icon/add.png"/></router-link>
+		</div>
 		<tab :first="first" :second="second"></tab>
 		<section>
 			<router-view name="statement"></router-view>
@@ -12,6 +15,7 @@
 	export default {
 		data: function() {
 			return {
+				iconShow:true,
 				first:{
 					path:'/Jubiter/cz/statement/',
 					name:'我提出的'
@@ -24,6 +28,16 @@
 		},
 		components:{
 			tab
+		},
+		watch: {
+			$route(to,from){
+				if(to.path == this.first.path){
+					this.iconShow = true
+				}
+				else{
+					this.iconShow = false
+				}
+			}
 		},
 	}
 </script>
@@ -38,10 +52,21 @@
 		height: 100%;
 		padding: 60px 44px;
 		box-sizing: border-box;
+		position: relative;
 		section{
 			height: 94%;
 			overflow: scroll;
 			margin-top: 30px;
+		}
+		.icon{
+			position: absolute;
+			right: 40px;
+			
+			img{
+				width: 28px;
+				margin-right: 20px;
+				box-shadow: 0px 0px 21px rgba(0,0,0,.08);
+			}
 		}
 	}
 </style>
