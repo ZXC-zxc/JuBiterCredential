@@ -29,8 +29,7 @@ export default {
       var self = this;
       var param = { pageSize: 10, pageNumber: 1, type: "receive" };
       applyList(param)
-        .then(function(response) {
-          var res = response.data;
+        .then(function(res) {
           self.applys = res.list;
           self.total = res.total;
         })

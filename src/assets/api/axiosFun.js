@@ -31,7 +31,7 @@ const reqtablePost = (url, params) => {
     ).then(res => res.data);
 };
 // 通用公用方法
-const reqPost = (method, url, params) => {
+const reqPost = (url, params) => {
     return axios.post(
         url,
         { data: params },
