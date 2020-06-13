@@ -15,14 +15,7 @@
 	export default {
 		data: function() {
 			return {
-				first:{
-					path:'/Jubiter/cz/statement/',
-					name:'我提出的'
-				},
-				second:{
-					path:'/Jubiter/cz/statement/mentioned',
-					name:'提到我的'
-				}
+				
 			}
 		},
 		components:{
