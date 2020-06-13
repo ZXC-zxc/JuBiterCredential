@@ -1,9 +1,6 @@
 <!-- 使用权 -->
-<!-- 使用权 -->
 <template>
-	<div>
-		<Table :tableData="tableData"></Table>
-	</div>
+	<Table :tableData="tableData"></Table>
 </template>
 
 <script>

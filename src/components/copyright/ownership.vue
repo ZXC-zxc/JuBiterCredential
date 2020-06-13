@@ -1,9 +1,9 @@
 <!-- 所有权 -->
 <template>
-  <div>
+  <!-- <div> -->
     <!--<Table :tableData="tableData" :tabListData="tabListData"></Table>-->
     <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -121,5 +121,5 @@ export default {
 };
 </script>
 
-<style>
+<style >
 </style>
