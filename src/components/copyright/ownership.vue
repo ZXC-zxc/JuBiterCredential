@@ -1,8 +1,6 @@
 <!-- 所有权 -->
 <template>
-  <div>
     <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
-  </div>
 </template>
 
 <script>
@@ -89,5 +87,5 @@ export default {
 };
 </script>
 
-<style>
+<style >
 </style>
