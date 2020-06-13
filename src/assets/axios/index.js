@@ -93,7 +93,7 @@ axios.interceptors.response.use(function (response) {
 		config.__retryCount = config.__retryCount || 0;
 		//是否超过总的请求次数
 		if (config.__retryCount >= axios.defaults.retry) {
-			// 返回错误信息        
+			// 返回错误信息        
 			layer.alert("请求超时")
 			return Promise.reject(error);
 		}

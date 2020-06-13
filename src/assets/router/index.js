@@ -19,7 +19,7 @@ import exhibit from '@/components/copyright/exhibit.vue'  //出示
 import statement from '@/components/statement/statement.vue'
 import putForward from '@/components/statement/putForward.vue'
 import mentioned from '@/components/statement/mentioned.vue'
-import statementAdd from '@/components/statement/add.vue'
+import statementAdd from '@/components/statement/add.vue'   //添加
 
 
 // 待处理
@@ -62,7 +62,7 @@ const routes = [
 		]
 	},
 	{
-		path: '/Jubiter/cz/copyright/add',  
+		path: '/Jubiter/cz/copyright/owner/add',  //新增
 		name: 'copyrightAdd',
 		component: copyrightAdd,
 		
@@ -72,20 +72,6 @@ const routes = [
 		path: '/Jubiter/cz/copyright/certificate/:id',   //参数:表格数据ID
 		name: 'certificate',
 		component: certificate,
-		// children: [
-		// 	{
-		// 		path: 'licensed',
-		// 		name: 'licensed',
-		// 		components: {
-		// 			cert: licensed
-		// 		}
-		// 	},
-			// {
-			// 	path: 'licensed',    //授权给
-			// 	name: 'licensed',
-			// 	components:licensed
-			// }
-		// ] 
 	},
 	// 授权给
 	{
@@ -100,7 +86,9 @@ const routes = [
 		component: exhibit,
 	},
 	
-	
+	/**
+	 * 声明部分
+	 */
 	{
 		path: '/Jubiter/cz/statement',  
 		name: 'statement',
@@ -110,14 +98,7 @@ const routes = [
 				name: 'putForward',
 				components: {
 					statement: putForward
-				},
-				children: [{
-					path: 'add',
-					name: 'statementAdd',
-					components: {
-						statementAdd: statementAdd
-					}
-				}],
+				}
 			},
 			{
 				path: 'mentioned',
