@@ -1,7 +1,7 @@
 <!-- 所有权 -->
 <template>
   <div>
-    <Table :tabListData="tabListData"></Table>
+    <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
   </div>
 </template>
 
@@ -10,10 +10,14 @@ import Table from "@/components/common/table.vue";
 export default {
   data: function() {
     return {
-      tableType: 0,
+      flag: false,
       //接收子组件传来的数据
       // rowId:"",
       // 传递到子组件的数据
+      tableData: {
+        list: [],
+        total: 0
+      },
       tabListData: [
         {
           title: "交易hash", // 表格列 标题
@@ -42,10 +46,18 @@ export default {
     Table
   },
   beforeCreate() {
-    // console.error("-----ownership----beforeCreate------start----")
-  },
-  created() {
-    // console.error("-----ownership----created------start----");
+    var self = this;
+    self.$store
+      .dispatch("getTableData", {
+        pageNumber: 1,
+        pageSize: 10,
+        tableType: 0
+      })
+      .then(() => {
+        self.tableData.list = self.$store.state.list;
+        self.tableData.total = self.$store.state.total;
+        self.flag = true;
+      });
   },
   mounted() {},
   methods: {

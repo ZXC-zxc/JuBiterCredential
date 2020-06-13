@@ -1,12 +1,8 @@
 <!-- 存证证书 -->
 <template>
-	<div class="certDiv"> 
+	<div class="certDiv">
 		<cert></cert>
 		<div class="btnDiv">
-			<div>
-				<button @click="licensed()">授权给</button>
-				<button @click="exhibit()">出示</button>
-			</div>
 			<button class="browser-btn">区块链浏览器</button>
 		</div>
 	</div>
@@ -19,8 +15,7 @@
 		data: function() {
 			return {
 				certData:{
-					owner:"ABCDEFGHIJK",
-					user:"ABCDEFGHIJK"
+					
 				}
 			}
 		},
@@ -28,28 +23,9 @@
 			cert
 		},
 		created() {
-			// alert(this.$route.params.id)
 		},
 		methods:{
-			licensed:function(){
-				// alert(this.id)
-				this.$router.push({
-					path:'/Jubiter/cz/copyright/certificate/'+this.$route.params.id+'/licensed',
-					params:{
-						id:this.$route.params.id
-					}
-				})
-			},
 			
-			exhibit:function(){
-				// alert(this.id)
-				this.$router.push({
-					path:'/Jubiter/cz/copyright/certificate/'+this.$route.params.id+'/exhibit',
-					params:{
-						id:this.$route.params.id
-					}
-				})
-			},
 		}
 		
 	}
@@ -118,7 +94,7 @@
 			left: 50%;
 			transform: translate(-50%,-50%);
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			width: 88%;
 			max-width: 900px;
 			min-width: 652px;

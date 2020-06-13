@@ -20,6 +20,7 @@ import statement from '@/components/statement/statement.vue'
 import putForward from '@/components/statement/putForward.vue'
 import mentioned from '@/components/statement/mentioned.vue'
 import statementAdd from '@/components/statement/add.vue'   //添加
+import stateCert from '@/components/statement/certificate.vue'  //存证证书
 
 
 // 待处理
@@ -67,7 +68,7 @@ const routes = [
 		component: copyrightAdd,
 		
 	},
-	//证书
+	//详情
 	{
 		path: '/Jubiter/cz/copyright/certificate/:id',   //参数:表格数据ID
 		name: 'certificate',
@@ -115,6 +116,25 @@ const routes = [
 		name: 'statementAdd',
 		component: statementAdd
 	},
+	//详情
+	{
+		path: '/Jubiter/cz/copyright/statement/:id',   //参数:表格数据ID
+		name: 'stateCert',
+		component: stateCert,
+	},
+	// 授权给
+	// {
+	// 	path: '/Jubiter/cz/copyright/certificate/:id/licensed',  
+	// 	name: 'licensed',
+	// 	component: licensed,
+	// },
+	//出示 exhibit--
+	// {
+	// 	path: '/Jubiter/cz/copyright/certificate/:id/exhibit',  
+	// 	name: 'exhibit',
+	// 	component: exhibit,
+	// },
+	
 	
 	
 	// 待处理

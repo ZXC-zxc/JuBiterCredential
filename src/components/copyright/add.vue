@@ -1,28 +1,42 @@
 <template>
 	<div id="add">
 		<div class="add-c">
-			<div class="tab">
-				<span>上传文件</span>/
-				<span>填写Hash</span>
-			</div>
-			<el-upload class="input"
-				action="https://jsonplaceholder.typicode.com/posts/"
-				:on-preview="handlePreview"
-				:on-remove="handleRemove"
-				:before-remove="beforeRemove"
-				multiple
-				:limit="1"  
-				:on-exceed="handleExceed"
-				:file-list="fileList">
-				<el-button  type="primary">
-					<img src="@/assets/images/icon/file.png" />
-					<span>Select File</span>
-				</el-button>
-				<!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
-			</el-upload>
-			<div class="btnDiv">
-				<button>存证</button>
-			</div>
+			<!-- <el-radio-group v-model="state" style="margin-bottom: 30px;">
+				<el-radio-button label="upload">上传文件</el-radio-button>
+			    <el-radio-button label="hash">填写Hash</el-radio-button>
+			</el-radio-group> -->
+			
+			<el-tabs :tab-position="top" style="height: 200px;">
+			    <el-tab-pane label="文件上传  /">
+					<el-upload class="input"
+						action=""
+						:on-preview="handlePreview"
+						:on-remove="handleRemove"
+						:before-remove="beforeRemove"
+						multiple
+						:limit="1"  
+						:on-exceed="handleExceed"
+						:file-list="fileList">
+						<el-button  type="primary">
+							<img src="@/assets/images/icon/file.png" />
+							<span>Select File</span>
+						</el-button>
+					</el-upload>
+				</el-tab-pane>
+				<el-tab-pane label="填写Hash">
+					<el-form ref="form" :model="form" >
+						<el-form-item>
+							<el-input v-model="form.name"  class="input"></el-input>
+						</el-form-item>
+					</el-form>
+					<div class="btnDiv">
+						<button>存证</button>
+					</div>
+				</el-tab-pane>
+			    
+			  </el-tabs>
+			
+			
 		</div>
 		
 	</div>
@@ -32,8 +46,13 @@
   export default {
     data() {
       return {
-        fileList: [{name: 'food.jpeg'}]
+        fileList: [{name: 'food.jpeg'}],
+		form: {
+		  name: '',
+		  
+		}
       };
+	 
     },
     methods: {
       handleRemove(file, fileList) {
@@ -52,7 +71,7 @@
   }
 </script>
 
-<style lang="scss" scoped="scoped">
+<style lang="scss">
 	#add{
 		width: 100%;
 		height: 100%;
@@ -63,7 +82,47 @@
 			width: 50%;
 			max-width: 567px;
 			min-width: 440px;
-			
+			margin-top: -14%;
+			.el-tabs__header {
+			    margin: 0 0 43px;
+			}
+
+			.el-tabs--border-card {
+			    background: transparent;
+			    border: 0;
+			    box-shadow: 0; 
+			}
+			.el-tabs__item {
+			    padding: 0 3px;
+				font-size: 17px;
+			}
+			.el-tabs__active-bar{
+				width: 0!important;
+			}
+			.el-tabs__nav-wrap::after {
+			    content: "";
+			    position: absolute;
+			    left: 0;
+			    bottom: 0;
+			    width: 100%;
+			    height: 2px;
+			    background-color: #FAFBFE;
+			    z-index: 1;
+			}
+			.el-tabs__content {
+			    overflow: inherit;
+			    position: relative;
+			}
+			.el-tabs--border-card>.el-tabs__header {
+				    background-color: transparent;
+				    border-bottom: 0;
+				    margin: 0;
+			}
+			.el-input__inner{
+				height: 49px;
+				border-radius: 8px;
+				font-size: 16px;
+			}
 		}
 		.tab{
 			span{
@@ -71,18 +130,19 @@
 			}
 		}
 		.input{
-			    margin: 45px 0 92px 0;
-			    display: flex;
-			    box-shadow: 0 0 9px rgba(0,0,0,.18);
-			    border-radius: 10px;
-				background-color: white;
+			// margin: 40px 0 76px 0;
+			display: flex;
+			box-shadow: 0 0 9px rgba(0,0,0,.18);
+			border-radius: 10px;
+			background-color: white;
+			
 			div{
 				display: flex;
 				align-items: center;
 				background: white;
 				box-shadow: 0 0 13px rgba(0,0,0,.1);
 				border-radius: 9px;
-				padding: 15px 0px;
+				// padding: 15px 0px;
 				p{
 					margin: 0;
 					display: flex;
@@ -114,9 +174,10 @@
 				
 			}
 			ul {
-			   flex-grow: 1!important;
-			   background-color: white!important;
+			   flex-grow: 1;
+			   background-color: white;
 			   font-size: 16px;
+			   border-radius: 0 8px 8px 0;
 			}
 			.el-upload-list {
 			    flex-grow: 1;
@@ -134,6 +195,8 @@
 				 max-width: 170px;
 				 height:40px;
 				 border-radius: 8px 8px;
+				margin-top: 70px;
+				font-size: 17px;
 			}
 		}
 	}

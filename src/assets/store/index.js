@@ -33,8 +33,6 @@ export default new Vuex.Store({
   // (提供存储设置state数据的方法)
   mutations: {
     setTableData(state,tableData){ 
-      // console.error("mutations ---setTableData--- start",)
-      // console.error("mutations ---setTableData---", JSON.stringify(tableData))
       state.list = tableData.list
       state.total = tableData.total
     }
@@ -83,9 +81,7 @@ export default new Vuex.Store({
           }
         ).then(function(response) {
           var res = response.data;
-          // console.log("--actions---getTableData ---res "+JSON.stringify(res));
           context.commit("setTableData", {list:res.list,total:res.total})
-           //console.log("--actions---getTableData ---res end------");
            resolve()
         })
         .catch(function(error) {
