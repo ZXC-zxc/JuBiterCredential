@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from '@/assets/router'
 import home from './index.vue'
+import store from '@/assets/store'
 
 /********全局引用***************/
 import axios from "@/assets/axios";
@@ -22,9 +23,11 @@ Vue.prototype.$layer = layer
 Vue.prototype.$requestUrl = requestUrl
 Vue.prototype.router = router
 Vue.prototype.$socketApi = socketApi
+Vue.prototype.store = store
 /********全局引用***************/
 
 new Vue({
   router,
+  store,
   render: h => h(home)
 }).$mount('#app')
