@@ -5,7 +5,7 @@
       <span>{{ total }}</span>
     </div>
     <ul>
-      <li class="active">{{ applys }}</li>
+      <li class="active">收到{{ applys[0].receiverLoginName }}的授权请求</li>
     </ul>
   </section>
 </template>
@@ -34,7 +34,7 @@ export default {
             data: {
               pageSize: 10,
               pageNumber: 1,
-              type: "initiate"
+              type: "receive"
             }
           },
           {
