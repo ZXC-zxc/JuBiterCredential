@@ -1,27 +1,21 @@
 <!-- 所有权 -->
 <template>
-  <!-- <div> -->
-    <!--<Table :tableData="tableData" :tabListData="tabListData"></Table>-->
     <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
-  <!-- </div> -->
 </template>
 
 <script>
 import Table from "@/components/common/table.vue";
-var requireTableData = require("@/assets/data/table2.json");
 export default {
   data: function() {
     return {
-		flag:false,
-      tableType: 0,
+      flag: false,
       //接收子组件传来的数据
       // rowId:"",
       // 传递到子组件的数据
-	  tableData:{
-		  list:"",
-		  total:""
-	  },
-	  
+      tableData: {
+        list: [],
+        total: 0
+      },
       tabListData: [
         {
           title: "交易hash", // 表格列 标题
@@ -49,9 +43,19 @@ export default {
   components: {
     Table
   },
-  created() {
-    // this.tableData = requireTableData;
-    this.getFTableData();
+  beforeCreate() {
+    var self = this;
+    self.$store
+      .dispatch("getTableData", {
+        pageNumber: 1,
+        pageSize: 10,
+        tableType: 0
+      })
+      .then(() => {
+        self.tableData.list = self.$store.state.list;
+        self.tableData.total = self.$store.state.total;
+        self.flag = true;
+      });
   },
   mounted() {},
   methods: {
@@ -67,46 +71,8 @@ export default {
           id: id
         }
       });
-    },
-
-    getFTableData() {
-		var self = this;
-		this.$axios
-			.post("jubiter-credential-web/admin/credential/list.action",
-				{
-					data: {
-					  pageSize: 10,
-					  pageNumber: 1,
-					  type: "OwnerShip"
-					}	
-				},
-				{
-					headers: {
-						"Access-Control-Allow-Origin": "*", //解决cors头问题
-						"Access-Control-Allow-Credentials": "true", //解决session问题
-						"Content-Type": "application/json" //将表单数据传递转化为request payload类型
-					},
-					withCredentials: true
-				}
-			)
-			.then(function(response) {
-
-				var res = response.data;
-				
-				self.tableData.list = res.list;
-				self.tableData.total = res.total;
-				console.log(self.tableData.total)
-				self.flag=true
-				console.error(
-					"----table-------childMethod----------" + JSON.stringify(self.tableData.list)
-				);
-			})
-			.catch(function(error) {
-				console.error(error.message);
-				alert(error);
-			});
-		}
-	},
+    }
+  },
   mounted() {
     // getRowId:function(value) {
     //     this.rowId = value;
