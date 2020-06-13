@@ -8,7 +8,7 @@ Vue.use(VueAxios, axios)
 // 请求超时
 axios.defaults.timeout = 5000
 
-let baseUrl = "/hy"
+let baseUrl = "/"
 if (process.env.NODE_ENV == "production") {
 	baseUrl = process.env.VUE_APP_URL
 }
@@ -27,9 +27,8 @@ axios.interceptors.request.use((config) => {
 	accessToken = "scan"
 	const userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
 	const time = new Date().getTime();
-	let token = window.localStorage.getItem("accessToken")
+	let token = window.localStorage['JSESSIONID'];
 	if (token) {
-		alert(token)
 		//将token放到请求头发送给服务器,将tokenkey放在请求头中
 		config.headers.accessToken = token;
 	}
@@ -94,7 +93,7 @@ axios.interceptors.response.use(function (response) {
 		config.__retryCount = config.__retryCount || 0;
 		//是否超过总的请求次数
 		if (config.__retryCount >= axios.defaults.retry) {
-			// 返回错误信息        
+			// 返回错误信息        
 			layer.alert("请求超时")
 			return Promise.reject(error);
 		}

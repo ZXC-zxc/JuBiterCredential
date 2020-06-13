@@ -13,50 +13,96 @@
 </template>
 
 <script>
-
-	export default {
-		data: function() {
-			return {
-				link:"/",
-				categoryList:""
-			}
-	
-		},
-		components:{
-		
-		},
-		mounted() {
-			let self = this;
-			let interval = setInterval(function(){ 				
-				self.$socketApi.jubiterOper.getSerialNumber()
-				.then((sn)=>{
-					if(sn == "")return;
-					alert(sn);
-					clearInterval(interval);
-					self.$router.push({
-					path: "/Jubiter/cz/copyright"
-				});
-				})				
-				.catch((code, msg) =>{
-					console.log('no key');
-				}); }, 
-				3000);
-
-			
-		},
-		methods:{
-			linkIndex:function(){
-				//alert(1)
-				this.$router.push({
-					path: "/Jubiter/cz/copyright"
-				});
-			}
-		}
-	}
+	// const categoryData = require('@/assets/data/category/001.json')
+import axios from "axios";
+export default {
+  data: function() {
+    return {
+      link: "/",
+      categoryList: ""
+    };
+  },
+  components: {},
+  mounted() {
+    let self = this;
+    let interval = setInterval(function() {
+      self.$socketApi.jubiterOper
+        .getSerialNumber()
+        .then(sn => {
+          if (sn == "") return;
+          clearInterval(interval);
+      axios
+        .post(
+          "jubiter-credential-web/admin/shiro/device/login.action",
+          {
+            data: { deviceSn:sn }
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*", //解决cors头问题
+              "Access-Control-Allow-Credentials": "true", //解决session问题
+              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
+            },
+            withCredentials: true
+          }
+        )
+        .then(function(response) {
+          var res = response.data;
+          if (res.code == "ok-000000") {
+            self.$router.push({
+              path: "/Jubiter/cz/copyright"
+            });
+          } else {
+            alert(respresonse.msg);
+          }
+        })
+        .catch(function(error) {
+          alert(error);
+        });
+        })
+        .catch((code, msg) => {
+          console.log("no key");
+        });
+    }, 3000);
+  },
+  methods: {
+    linkIndex: function() {
+      let self = this;
+      axios
+        .post(
+          "jubiter-credential-web/admin/shiro/device/login.action",
+          {
+            data: { deviceSn: "JUBLD20051200001" }
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*", //解决cors头问题
+              "Access-Control-Allow-Credentials": "true", //解决session问题
+              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
+            },
+            withCredentials: true
+          }
+        )
+        .then(function(response) {
+          var res = response.data;
+          if (res.code == "ok-000000") {
+            self.$router.push({
+              path: "/Jubiter/cz/copyright"
+            });
+          } else {
+            alert(respresonse.msg);
+          }
+        })
+        .catch(function(error) {
+          alert(error);
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped="scoped">
-	.home{
+.home{
 		position: absolute;
 		width: 100%;
 		height: 100%;
