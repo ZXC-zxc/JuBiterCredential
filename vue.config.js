@@ -41,7 +41,7 @@ module.exports = {
 		port: 8080, // 端口
 		proxy: {
 			'/': {
-				target: 'http://192.168.17.45:8471/',  // target host
+				target: 'http://39.102.38.32:8082/',  // target host
 				ws: true,  // proxy websockets
 				changeOrigin: true,  // needed for virtual hosted sites
 				pathRewrite: {
