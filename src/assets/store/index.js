@@ -33,6 +33,7 @@ export default new Vuex.Store({
   // (提供存储设置state数据的方法)
   mutations: {
     setTableData(state,tableData){ 
+      // console.error("mutations ---setTableData--- start",)
       // console.error("mutations ---setTableData---", JSON.stringify(tableData))
       state.list = tableData.list
       state.total = tableData.total
@@ -41,6 +42,7 @@ export default new Vuex.Store({
    // (提供跟后台接口打交道的方法，并调用mutations提供的方法)
   actions: {
     getTableData(context, options) {
+      return new Promise((resolve,reject)=>{
         var type;
         var url;
         var pageNumber = !options.pageNumber ? options.pageNumber : DEFAULT_PAGE_NUMBER;
@@ -83,11 +85,13 @@ export default new Vuex.Store({
           var res = response.data;
           // console.log("--actions---getTableData ---res "+JSON.stringify(res));
           context.commit("setTableData", {list:res.list,total:res.total})
-          // console.log("--actions---getTableData ---res end------");
+           //console.log("--actions---getTableData ---res end------");
+           resolve()
         })
         .catch(function(error) {
           alert(error);
         });
+      })
     },
   },
   modules: {

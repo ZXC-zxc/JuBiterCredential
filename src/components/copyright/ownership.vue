@@ -1,14 +1,12 @@
 <!-- 所有权 -->
 <template>
   <div>
-    <!--<Table :tableData="tableData" :tabListData="tabListData"></Table>-->
     <Table :tabListData="tabListData"></Table>
   </div>
 </template>
 
 <script>
 import Table from "@/components/common/table.vue";
-var requireTableData = require("@/assets/data/table2.json");
 export default {
   data: function() {
     return {
@@ -43,9 +41,11 @@ export default {
   components: {
     Table
   },
+  beforeCreate() {
+    // console.error("-----ownership----beforeCreate------start----")
+  },
   created() {
-    this.tableData = requireTableData;
-    //this.getFTableData();
+    // console.error("-----ownership----created------start----");
   },
   mounted() {},
   methods: {
@@ -61,41 +61,6 @@ export default {
           id: id
         }
       });
-    },
-
-    getFTableData() {
-      var self = this;
-      this.$axios
-        .post(
-          "jubiter-credential-web/admin/credential/list.action",
-          {
-            data: {
-              pageSize: 10,
-              pageNumber: 1,
-              type: "OwnerShip"
-            }
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*", //解决cors头问题
-              "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/json" //将表单数据传递转化为request payload类型
-            },
-            withCredentials: true
-          }
-        )
-        .then(function(response) {
-          var res = response.data;
-          self.tableData.list = res.list;
-          self.tableData.total = res.total;
-          console.error(
-            "----table-------childMethod----------" + JSON.stringify(self.list)
-          );
-        })
-        .catch(function(error) {
-          console.error(error.message);
-          alert(error);
-        });
     }
   },
   mounted() {

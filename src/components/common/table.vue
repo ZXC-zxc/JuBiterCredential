@@ -21,31 +21,33 @@ import page from "@/components/common/page.vue";
 export default {
   //tableData:接口返回的数据       tabListData：表格的列名（父组件定义）
   props: ["tableType", "tabListData"],
-  // props: ["tableData", "tabListData"],
+  //   props: ["tableData", "tableType", "tabListData"],
   data() {
     return {
-      total: this.$store.state.total,
-      list: this.$store.state.list
-      // total: this.tableData.total,
-      // list: this.tableData.list
+      total: 0,
+      list: []
     };
   },
   components: {
     page
   },
-  created() {
-    this.getTableData();
+  beforeCreate() {
+    var self = this;
     var type = this.$parent.tableType;
-    // console.log("--table---created ---start ");
-    // this.$store.dispatch("getTableData", {
-    //   pageNumber: 1,
-    //   pageSize: 10,
-    //   tableType: type
-    // });
-    // console.error(
-    //   "-----------table----created------this.$store.state.total----" +
-    //     this.$store.state.total
-    // );
+    self.$store
+      .dispatch("getTableData", {
+        pageNumber: 1,
+        pageSize: 10,
+        tableType: type
+      })
+      .then(() => {
+        self.list = self.$store.state.list;
+        self.total = self.$store.state.total;
+        // console.error("-----table------ffff----beforeCreate------ENDD----");
+      });
+  },
+  created() {
+    // console.error("-----------table----created------start----");
   },
   methods: {
     //存证证书详情页
@@ -54,45 +56,11 @@ export default {
       this.$parent.detailShow(row.id);
       // this.rowId = row.id
       // this.$emit("rowId",row.id);
-    },
+    }
 
     // childMethod(id) {
     // 	this.$parent.detailShow(id);
     // }
-    getTableData() {
-      var self = this;
-      this.$axios
-        .post(
-          "jubiter-credential-web/admin/credential/list.action",
-          {
-            data: {
-              pageSize: 10,
-              pageNumber: 1,
-              type: "OwnerShip"
-            }
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*", //解决cors头问题
-              "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/json" //将表单数据传递转化为request payload类型
-            },
-            withCredentials: true
-          }
-        )
-        .then(function(response) {
-          var res = response.data;
-          self.list = res.list;
-          self.total = res.total;
-          console.error(
-            "----table-------childMethod----------" + JSON.stringify(self.list)
-          );
-        })
-        .catch(function(error) {
-          console.error(error.message);
-          alert(error);
-        });
-    }
   }
   // watch:{
   // 	rowId:function(val){
