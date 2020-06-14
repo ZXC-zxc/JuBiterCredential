@@ -22,6 +22,7 @@ export default {
           el_data: "txHash" //表格列 数据字段名称
         },
         {
+          width: "5%",
           title: "高度",
           el_data: "height"
         },
