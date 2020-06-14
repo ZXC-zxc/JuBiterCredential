@@ -26,9 +26,6 @@ export default {
   data() {
     return {
       flag: false,
-      //�������������������
-      // rowId:"",
-      // ���ݵ������������
       tableData: {
         list: [],
         total: 0
