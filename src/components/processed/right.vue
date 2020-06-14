@@ -8,10 +8,13 @@
       <label>给</label>
       <span>{{apply.to}}</span>
     </div>
+    <div class="btnDiv">
+      <el-button @click.native="submitAuth()">授权</el-button>
+    </div>
   </section>
 </template>
-
 <script>
+import { addCredentialAuthClaim } from "../../assets/api/authApply";
 export default {
   props: ["selectedApply"],
   data() {
@@ -30,7 +33,25 @@ export default {
       deep: true
     }
   },
-  methods: {}
+  methods: {
+    submitAuth() {
+      let self = this;
+      var param = { hash: self.apply.hash, holder: self.apply.to };
+      addCredentialAuthClaim(param)
+        .then(function(res) {
+          if (res.code == "ok-000000") {
+            self.$router.push({
+              path: "/Jubiter/cz/processed"
+            });
+          } else {
+            alert(res.msg);
+          }
+        })
+        .catch(function(error) {
+          alert(error);
+        });
+    }
+  }
 };
 </script>
 
