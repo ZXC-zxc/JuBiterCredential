@@ -5,42 +5,24 @@
       <span>{{ total }}</span>
     </div>
     <ul>
-      <li class="active">收到{{ applys }}的授权请求</li>
+      <div v-for="(item,index) in list">
+        <li class="active" @click="selectApply(item)">收到{{ item.initiaterAddr }}的授权请求</li>
+      </div>
     </ul>
   </section>
 </template>
 
 <script>
-import { applyList } from "../../assets/api/authApply";
 export default {
-  data: function() {
+  data() {
     return {
-      applys: [],
-      total: 0
+      total: this.$store.state.total,
+      list: this.$store.state.list
     };
   },
-  mounted() {
-    this.fetchApplys();
-  },
-  components: {},
-  beforeCreate: function() {},
   methods: {
-    fetchApplys() {
-      var self = this;
-      var param = { pageSize: 10, pageNumber: 1, type: "receive" };
-      applyList(param)
-        .then(function(res) {
-          self.applys = res.list;
-          self.total = res.total;
-        })
-        .catch(function(error) {
-          alert(error);
-        });
-    }
-  },
-  watch: {
-    $route(to, from) {
-      fetchApplys();
+    selectApply(apply) {
+      this.$parent.showSelectedApply(apply);
     }
   }
 };
@@ -94,4 +76,3 @@ section {
   }
 }
 </style>
-

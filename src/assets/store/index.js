@@ -20,6 +20,8 @@ const CLAIM_TYPE_INITIATE = "initiate";
 //声明类型:我收到的
 const CLAIM_TYPE_RECEIVE = "receive";
 
+const APPLY_LIST_URL = "jubiter-credential-web/admin/apply/list.action";
+
 export default new Vuex.Store({
 	// // (类似存储全局变量的数据)
   state: {
@@ -61,6 +63,10 @@ export default new Vuex.Store({
           case 3://声明类型，支持initiate和receive。initiate：我发起的，receive：我收到的
             type = CLAIM_TYPE_RECEIVE
             url = CLAIM_LIST_URL
+            break
+          case 4://收到的授权请求，receive：我收到的
+            type = CLAIM_TYPE_RECEIVE
+            url = APPLY_LIST_URL
             break
       }
       axios.post(url,
