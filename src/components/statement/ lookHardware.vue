@@ -1,14 +1,6 @@
 <template>
-  <div id="add">
-    <div class="contentDiv">
-      <h3>内容</h3>
-      <textarea v-model="content"></textarea>
-    </div>
-    <div class="relatedDiv">
-      <h3>相关人</h3>
-      <input v-model="to" type="text" value />
-    </div>
-    <button @click="submit">确定</button>
+  <div id="hardWareAlert">
+    
   </div>
 </template>
 
@@ -30,6 +22,9 @@ export default {
 </script>
 
 <style lang="scss" scoped="scoped">
+	#hardWareAlert{
+		
+	}
 
 </style>
 
