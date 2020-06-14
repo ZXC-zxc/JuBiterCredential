@@ -14,6 +14,7 @@
 
 <script>
 import cert from "@/components/common/cert.vue";
+import { linkBlockChainExploerByTxhash } from "../../assets/api/exploerApi";
 export default {
   data: function() {
     return {
@@ -56,8 +57,9 @@ export default {
       });
     },
     linkBlockChainExploer: function() {
-      window.location.href =
-        "http://39.102.47.108/tx/3FD827671A4FA22162AF5C0D6A6CA888C814A49672C81AF12D4F4F7429F7D3D9";
+      linkBlockChainExploerByTxhash(
+        "3FD827671A4FA22162AF5C0D6A6CA888C814A49672C81AF12D4F4F7429F7D3D9"
+      );
     }
   }
 };
