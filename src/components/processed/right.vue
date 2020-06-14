@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="right">
     <div>
       <label>请求您授权</label>
       <span>{{apply.hash}}</span>
@@ -56,15 +56,15 @@ export default {
 </script>
 
 <style lang="scss" scoped="scoped">
-section {
+#right {
   flex: 1;
   div {
     width: 70%;
     max-width: 470px;
     label {
       display: block;
-      margin-bottom: 20px;
-      font-size: 20px;
+      margin-bottom: 15px;
+      font-size: 18px;
     }
     span {
       display: block;
@@ -79,6 +79,24 @@ section {
   }
   div:nth-child(1) {
     margin-bottom: 30px;
+  }
+  .btnDiv{
+		  
+	  button{
+		      float: right;
+		      width: 165px;
+		      margin-top: 42px;
+		      height: 46px;
+		      font-size: 17px;
+		      letter-spacing: 3px;
+		      -webkit-box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
+		      box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
+		      background: #181818;
+		      border: 0;
+		      outline: none;
+		      color: white;
+		      border-radius: 8px;
+	  }
   }
 }
 </style>

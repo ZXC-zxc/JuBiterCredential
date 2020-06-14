@@ -45,6 +45,10 @@ section {
       border-bottom: 1px solid #eff1f3;
       padding: 19px 5% 19px 11%;
       font-size: 18px;
+	  word-break:break-all;
+	  font-size: 16px;
+	  word-break: break-all;
+	  line-height: 26px;
       // background: #F6F7FA;
     }
     .active {
