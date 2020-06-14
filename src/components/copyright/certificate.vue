@@ -28,18 +28,15 @@ export default {
     cert
   },
   created() {
-    // alert(this.$route.params.id)
+    // alert(this.$route.params.hash);
   },
   methods: {
     licensed: function() {
-      // alert(this.id)
+      var hash = this.$route.params.hash;
       this.$router.push({
-        path:
-          "/Jubiter/cz/copyright/certificate/" +
-          this.$route.params.id +
-          "/licensed",
+        path: "/Jubiter/cz/copyright/certificate/" + hash + "/licensed",
         params: {
-          id: this.$route.params.id
+          hash: hash
         }
       });
     },
@@ -49,17 +46,15 @@ export default {
       this.$router.push({
         path:
           "/Jubiter/cz/copyright/certificate/" +
-          this.$route.params.id +
+          this.$route.params.hash +
           "/exhibit",
         params: {
-          id: this.$route.params.id
+          hash: this.$route.params.hash
         }
       });
     },
     linkBlockChainExploer: function() {
-      linkBlockChainExploerByTxhash(
-        "3FD827671A4FA22162AF5C0D6A6CA888C814A49672C81AF12D4F4F7429F7D3D9"
-      );
+      linkBlockChainExploerByTxhash(this.$route.params.txhash);
     }
   }
 };

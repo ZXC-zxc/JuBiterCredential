@@ -29,7 +29,7 @@ export default {
         },
         {
           width: "15%",
-          title: "存证hash",
+          title: "著作权hash",
           el_data: "claimContent"
         },
         {
@@ -69,11 +69,12 @@ export default {
       console.log(this.rowId);
     },
     // '/Jubiter/cz/copyright/certificate/:id'
-    detailShow: function(certHash) {     //存证Hash作为参数
+    detailShow: function(row) {
       this.$router.push({
         name: "certificate",
         params: {
-          certHash: certHash
+          hash: row.claimContent,
+          txhash: row.txHash
         }
       });
     }

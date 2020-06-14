@@ -8,14 +8,14 @@
 <script>
 import left from "@/components/processed/left.vue";
 import right from "@/components/processed/right.vue";
-
+import { changeApplyStatus } from "../../assets/api/authApply";
 export default {
   data: function() {
     return {
       flag: false,
       applys: [],
       total: 0,
-      selectedApply: { hash: "", to: "" }
+      selectedApply: { hash: "", to: "", id: 0, status: 0 }
     };
   },
   components: {
@@ -41,6 +41,21 @@ export default {
     showSelectedApply(selectedApply) {
       this.selectedApply.hash = selectedApply.hash;
       this.selectedApply.to = selectedApply.initiaterAddr;
+      this.selectedApply.id = selectedApply.id;
+      this.selectedApply.status = selectedApply.status;
+    },
+    changeApplyStatus(param) {
+      let self = this;
+      changeApplyStatus(param)
+        .then(function(res) {
+          if (res.code == "ok-000000") {
+          } else {
+            alert(res.msg);
+          }
+        })
+        .catch(function(error) {
+          alert(error);
+        });
     }
   }
 };

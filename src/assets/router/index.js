@@ -83,7 +83,7 @@ const routes = [
 	},
 	// 授权给
 	{
-		path: '/Jubiter/cz/copyright/certificate/:id/licensed',
+		path: '/Jubiter/cz/copyright/certificate/:hash/licensed',
 		name: 'licensed',
 		component: licensed,
 	},
