@@ -5,7 +5,8 @@
         <div v-for="(item,index) in tabListData">
           <el-table-column
             :min-width="item.width"
-            :align="center"
+            align="left"
+            header-align="center"
             :prop="item.el_data"
             :label="item.title"
           ></el-table-column>
