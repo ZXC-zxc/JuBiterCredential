@@ -6,7 +6,10 @@
     </div>
     <ul>
       <div v-for="(item,index) in list">
-        <li class="active" @click="selectApply(item)">收到{{ item.initiaterAddr }}的授权请求</li>
+        <li
+          :class="item.status===0 ?'active':''"
+          @click="selectApply(item,$event)"
+        >收到{{ item.initiaterAddr }}的授权请求</li>
       </div>
     </ul>
   </section>
@@ -21,7 +24,10 @@ export default {
     };
   },
   methods: {
-    selectApply(apply) {
+    selectApply(apply, event) {
+      var el = event.currentTarget;
+      el.removeAttribute("class");
+      this.$parent.changeApplyStatus({ id: apply.id, status: 1 });
       this.$parent.showSelectedApply(apply);
     }
   }
@@ -45,6 +51,10 @@ section {
       border-bottom: 1px solid #eff1f3;
       padding: 19px 5% 19px 11%;
       font-size: 18px;
+      word-break: break-all;
+      font-size: 16px;
+      word-break: break-all;
+      line-height: 26px;
       // background: #F6F7FA;
     }
     .active {
