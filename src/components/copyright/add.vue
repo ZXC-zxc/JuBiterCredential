@@ -1,11 +1,6 @@
 <template>
   <div id="add">
     <div class="add-c">
-      <!-- <el-radio-group v-model="state" style="margin-bottom: 30px;">
-				<el-radio-button label="upload">上传文件</el-radio-button>
-			    <el-radio-button label="hash">填写Hash</el-radio-button>
-      </el-radio-group>-->
-
       <el-tabs :tab-position="top" style="height: 200px;">
         <el-tab-pane label="文件上传  /">
           <el-upload

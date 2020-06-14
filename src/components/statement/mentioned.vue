@@ -1,8 +1,5 @@
 <!-- 提到我的 -->
 <template>
-	<Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
-<!-- 提到我的 -->
-<template>
   <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
