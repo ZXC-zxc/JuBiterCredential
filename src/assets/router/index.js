@@ -10,6 +10,7 @@ import copyright from '@/components/copyright/copyrightView.vue'
 import owner from '@/components/copyright/ownership.vue'
 import use from '@/components/copyright/rightUse.vue'
 import copyrightAdd from '@/components/copyright/add.vue'
+import copyrightAddAuthApply from '@/components/copyright/addAuthApply.vue'
 import certificate from '@/components/copyright/certificate.vue'  //存证证书
 import licensed from '@/components/copyright/toLicensed.vue'  //授权给
 import exhibit from '@/components/copyright/exhibit.vue'  //出示
@@ -32,41 +33,47 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/Jubiter',  
+		path: '/Jubiter',
 		name: 'home',
 		component: home
 	},
 	{
-		path: '/',  
+		path: '/',
 		name: 'copyright',
 		component: copyright,
-		
+
 	},
 	{
-		path: '/Jubiter/cz/copyright',  
+		path: '/Jubiter/cz/copyright',
 		name: 'copyright',
 		component: copyright,
 		children: [{
-				path: '/',
-				name: 'owner',
-				components: {
-					copyright: owner
-				}
-			},
-			{
-				path: 'use',
-				name: 'use',
-				components: {
-					copyright: use
-				}
-			},
+			path: '/',
+			name: 'owner',
+			components: {
+				copyright: owner
+			}
+		},
+		{
+			path: 'use',
+			name: 'use',
+			components: {
+				copyright: use
+			}
+		},
 		]
 	},
 	{
 		path: '/Jubiter/cz/copyright/owner/add',  //新增
 		name: 'copyrightAdd',
 		component: copyrightAdd,
-		
+
+	},
+	{
+		path: '/Jubiter/cz/copyright/owner/addAuthApply',  //新增存证授权请求
+		name: 'copyrightAddAuthApply',
+		component: copyrightAddAuthApply,
+
 	},
 	//详情
 	{
@@ -76,43 +83,43 @@ const routes = [
 	},
 	// 授权给
 	{
-		path: '/Jubiter/cz/copyright/certificate/:id/licensed',  
+		path: '/Jubiter/cz/copyright/certificate/:id/licensed',
 		name: 'licensed',
 		component: licensed,
 	},
 	//出示 exhibit--
 	{
-		path: '/Jubiter/cz/copyright/certificate/:id/exhibit',  
+		path: '/Jubiter/cz/copyright/certificate/:id/exhibit',
 		name: 'exhibit',
 		component: exhibit,
 	},
-	
+
 	/**
 	 * 声明部分
 	 */
 	{
-		path: '/Jubiter/cz/statement',  
+		path: '/Jubiter/cz/statement',
 		name: 'statement',
 		component: statement,
 		children: [{
-				path: '/',
-				name: 'putForward',
-				components: {
-					statement: putForward
-				}
-			},
-			{
-				path: 'mentioned',
-				name: 'mentioned',
-				components: {
-					statement: mentioned
-				}
-			},
-			
-		] 
+			path: '/',
+			name: 'putForward',
+			components: {
+				statement: putForward
+			}
+		},
+		{
+			path: 'mentioned',
+			name: 'mentioned',
+			components: {
+				statement: mentioned
+			}
+		},
+
+		]
 	},
 	{
-		path: '/Jubiter/cz/statement/add',  
+		path: '/Jubiter/cz/statement/add',
 		name: 'statementAdd',
 		component: statementAdd
 	},
@@ -134,9 +141,9 @@ const routes = [
 	// 	name: 'exhibit',
 	// 	component: exhibit,
 	// },
-	
-	
-	
+
+
+
 	// 待处理
 	{
 		path: '/JuBiterHelp/zh-cn',
@@ -144,7 +151,7 @@ const routes = [
 		component: index,
 	},
 	{
-		path: '/Jubiter/cz/processed',  
+		path: '/Jubiter/cz/processed',
 		name: 'processed',
 		component: processed,
 		children: [{
@@ -155,7 +162,7 @@ const routes = [
 			}
 		}],
 	}
-	
+
 ];
 
 const router = new VueRouter({

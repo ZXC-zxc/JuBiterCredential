@@ -1,6 +1,6 @@
 <!-- 所有权 -->
 <template>
-    <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
+  <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
@@ -18,22 +18,27 @@ export default {
       },
       tabListData: [
         {
+          width: "15%",
           title: "交易hash", // 表格列 标题
           el_data: "txHash" //表格列 数据字段名称
         },
         {
+          width: "5%",
           title: "高度",
           el_data: "height"
         },
         {
+          width: "15%",
           title: "存证hash",
           el_data: "claimContent"
         },
         {
+          width: "10%",
           title: "所属账户",
           el_data: "holder"
         },
         {
+          width: "10%",
           title: "存证时间",
           el_data: "timestamp"
         }

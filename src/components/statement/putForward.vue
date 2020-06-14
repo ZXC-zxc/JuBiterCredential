@@ -1,92 +1,89 @@
-<!-- ÎÒÌá³öµÄ -->
+<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
 <template>
   <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
-	import Table from "@/components/common/table.vue";
-	export default {
-	  components: {
-	    Table
-	  },
-	  beforeCreate() {
-	    var self = this;
-	    self.$store
-	      .dispatch("getTableData", {
-	        pageNumber: 1,
-	        pageSize: 10,
-	        tableType: 2
-	      })
-	      .then(() => {
-	        self.tableData.list = self.$store.state.list;
-	        self.tableData.total = self.$store.state.total;
-	        self.flag = true;
-	      });
-	  },
-	  data() {
-	    return {
-	      flag: false,
-	      //½ÓÊÕ×Ó×é¼ş´«À´µÄÊı¾İ
-	      // rowId:"",
-	      // ´«µİµ½×Ó×é¼şµÄÊı¾İ
-	      tableData: {
-	        list: [],
-	        total: 0
-	      },
-	      tabListData: [
-	        {
-	          width: "15%",
-	          title: "½»Ò×hash", // ±í¸ñÁĞ ±êÌâ
-	          el_data: "txHash" //±í¸ñÁĞ Êı¾İ×Ö¶ÎÃû³Æ
-	        },
-	        {
-	          width: "5%",
-	          title: "¸ß¶È",
-	          el_data: "height"
-	        },
-	        {
-	          width: "10%",
-	          title: "ÉùÃ÷ID",
-	          el_data: "claimId"
-	        },
-	        {
-	          width: "20%",
-	          title: "ÉùÃ÷ÄÚÈİhash",
-	          el_data: "claimContent"
-	        },
-	        {
-	          width: "15%",
-	          title: "ËùÊôÕË»§",
-	          el_data: "issuer"
-	        },
-	        {
-	          width: "15%",
-	          title: "Ìáµ½Õß",
-	          el_data: "holder"
-	        },
-	        {
-	          width: "10%",
-	          title: "ÉùÃ÷Ê±¼ä",
-	          el_data: "timestamp"
-	        }
-	      ]
-	    };
-	  },
-	  methods: {
-	    getRowId(value) {
-	      this.rowId = value;
-	      console.log(this.rowId);
-	    },
-	    detailShow: function(id) {
-	      this.$router.push({
-	        name: "stateCert",
-	        params: {
-	          id: id
-	        }
-	      });
-	    }
-	  }
-	};
+import Table from "@/components/common/table.vue";
+export default {
+  components: {
+    Table
+  },
+  beforeCreate() {
+    var self = this;
+    self.$store
+      .dispatch("getTableData", {
+        pageNumber: 1,
+        pageSize: 10,
+        tableType: 2
+      })
+      .then(() => {
+        self.tableData.list = self.$store.state.list;
+        self.tableData.total = self.$store.state.total;
+        self.flag = true;
+      });
+  },
+  data() {
+    return {
+      flag: false,
+      tableData: {
+        list: [],
+        total: 0
+      },
+      tabListData: [
+        {
+          width: "15%",
+          title: "äº¤æ˜“hash", // è¡¨æ ¼åˆ— æ ‡é¢˜
+          el_data: "txHash" //è¡¨æ ¼åˆ— æ•°æ®å­—æ®µåç§°
+        },
+        {
+          width: "5%",
+          title: "é«˜åº¦",
+          el_data: "height"
+        },
+        {
+          width: "10%",
+          title: "å£°æ˜ID",
+          el_data: "claimId"
+        },
+        {
+          width: "20%",
+          title: "å£°æ˜å†…å®¹hash",
+          el_data: "claimContent"
+        },
+        {
+          width: "10%",
+          title: "æ‰€å±è´¦æˆ·",
+          el_data: "issuer"
+        },
+        {
+          width: "10%",
+          title: "æåˆ°è€…",
+          el_data: "holder"
+        },
+        {
+          width: "10%",
+          title: "å£°æ˜æ—¶é—´",
+          el_data: "timestamp"
+        }
+      ]
+    };
+  },
+  methods: {
+    getRowId(value) {
+      this.rowId = value;
+      console.log(this.rowId);
+    },
+    detailShow: function(id) {
+      this.$router.push({
+        name: "stateCert",
+        params: {
+          id: id
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style>

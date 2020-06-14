@@ -5,7 +5,7 @@
       <span>{{ total }}</span>
     </div>
     <ul>
-      <li class="active">收到{{ applys[0].receiverLoginName }}的授权请求</li>
+      <li class="active">收到{{ applys }}的授权请求</li>
     </ul>
   </section>
 </template>

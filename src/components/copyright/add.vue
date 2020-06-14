@@ -45,7 +45,6 @@ import {
   credentialHashAdd,
   credentialAddUrl
 } from "../../assets/api/copyrightApi";
-import axios from "axios";
 export default {
   data() {
     return {
