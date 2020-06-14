@@ -19,38 +19,27 @@
 </template>
 
 <script>
-import page from "@/components/common/page.vue";
-export default {
-  //tableData:接口返回的数据       tabListData：表格的列名（父组件定义）
-  props: ["tableData", "tabListData"],
-  data() {
-    return {
-      total: this.tableData.total,
-      list: this.tableData.list
-    };
-  },
-  components: {
-    page
-  },
-  methods: {
-    //存证证书详情页
-    getDetail(row) {
-      alert(row.id);
-      this.$parent.detailShow(row.id);
-      // this.rowId = row.id
-      // this.$emit("rowId",row.id);
-    }
-
-    // childMethod(id) {
-    // 	this.$parent.detailShow(id);
-    // }
-  }
-  // watch:{
-  // 	rowId:function(val){
-  // 		console.log(val)
-  // 	}
-  // }
-};
+	import page from "@/components/common/page.vue";
+	export default {
+		//tableData:接口返回的数据       tabListData：表格的列名（父组件定义）
+		props: ["tableData", "tabListData"],
+		data() {
+			return {
+				 total: this.tableData.total,
+				 list: this.tableData.list,	
+			};
+		},
+		components: {
+			page
+		},
+		methods: {
+			//存证证书详情页
+			getDetail(row) {
+				alert(row.claimContent);  //存证Hash
+				this.$parent.detailShow(row.claimContent);   //调用父组件方法，路由跳转
+			}
+		}
+	};
 </script>
 
 <style lang="scss">

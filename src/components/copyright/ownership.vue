@@ -64,11 +64,11 @@ export default {
       console.log(this.rowId);
     },
     // '/Jubiter/cz/copyright/certificate/:id'
-    detailShow: function(id) {
+    detailShow: function(certHash) {     //存证Hash作为参数
       this.$router.push({
         name: "certificate",
         params: {
-          id: id
+          certHash: certHash
         }
       });
     }

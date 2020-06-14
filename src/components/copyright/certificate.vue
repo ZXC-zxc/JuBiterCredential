@@ -18,10 +18,7 @@
 	export default {
 		data: function() {
 			return {
-				certData:{
-					owner:"ABCDEFGHIJK",
-					user:"ABCDEFGHIJK"
-				}
+				certHash:""
 			}
 		},
 		components:{
