@@ -35,30 +35,37 @@ export default {
       },
       tabListData: [
         {
+          width: "15%",
           title: "交易hash", // 表格列 标题
           el_data: "txHash" //表格列 数据字段名称
         },
         {
+          width: "5%",
           title: "高度",
           el_data: "height"
         },
         {
+          width: "10%",
           title: "声明ID",
           el_data: "claimId"
         },
         {
+          width: "20%",
           title: "声明内容hash",
           el_data: "claimContent"
         },
         {
+          width: "15%",
           title: "所属账户",
           el_data: "issuer"
         },
         {
+          width: "15%",
           title: "提到者",
           el_data: "holder"
         },
         {
+          width: "10%",
           title: "声明时间",
           el_data: "timestamp"
         }
