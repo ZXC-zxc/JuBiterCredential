@@ -1,6 +1,6 @@
 <!-- 所有权 -->
 <template>
-  <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
+  <Table :tableData.sync="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
@@ -77,6 +77,11 @@ export default {
           txhash: row.txHash
         }
       });
+    },
+    changeTableData() {
+      var self = this;
+      self.tableData.list = self.$store.state.list;
+      self.tableData.total = self.$store.state.total;
     }
   },
   mounted() {

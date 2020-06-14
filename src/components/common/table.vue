@@ -43,12 +43,22 @@ export default {
     // childMethod(id) {
     // 	this.$parent.detailShow(id);
     // }
+  },
+  watch: {
+    // 	rowId:function(val){
+    // 		console.log(val)
+    // 	}
+    tableData: {
+      handler: function(newVal, oldVal) {
+        if (newVal) {
+          this.total = newVal.total;
+          this.list = newVal.list;
+        }
+      },
+      immediate: true,
+      deep: true
+    }
   }
-  // watch:{
-  // 	rowId:function(val){
-  // 		console.log(val)
-  // 	}
-  // }
 };
 </script>
 

@@ -27,6 +27,7 @@ export default new Vuex.Store({
   state: {
     list: [],
     total: 0,
+    tableType:0
   },
    // (提供用来获取state数据的方法)
   getters:{
@@ -37,6 +38,7 @@ export default new Vuex.Store({
     setTableData(state,tableData){ 
       state.list = tableData.list
       state.total = tableData.total
+      state.tableType = tableData.tableType
     }
   },
    // (提供跟后台接口打交道的方法，并调用mutations提供的方法)
@@ -45,8 +47,8 @@ export default new Vuex.Store({
       return new Promise((resolve,reject)=>{
         var type;
         var url;
-        var pageNumber = !options.pageNumber ? options.pageNumber : DEFAULT_PAGE_NUMBER;
-        var pageSize = !options.pageSize ? options.pageSize : DEFAULT_PAGE_SIZE;
+        var pageNumber = options.pageNumber >1 ? options.pageNumber : DEFAULT_PAGE_NUMBER;
+        var pageSize = options.pageSize>1 ? options.pageSize : DEFAULT_PAGE_SIZE;
         switch (options.tableType) {
           case 0://存证类型，支持Usufruct和OwnerShip。OwnerShip：所有权，Usufruct：使用权
             type = CREDENTIAL_TYPE_OWNERSHIP;
@@ -87,7 +89,8 @@ export default new Vuex.Store({
           }
         ).then(function(response) {
           var res = response.data;
-          context.commit("setTableData", {list:res.list,total:res.total})
+          console.error("store -----------"+JSON.stringify(options));
+          context.commit("setTableData", {list:res.list,total:res.total,tableType:options.tableType})
            resolve()
         })
         .catch(function(error) {

@@ -1,6 +1,6 @@
 <!-- 提到我的 -->
 <template>
-  <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
+  <Table :tableData.sync="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
@@ -78,12 +78,17 @@ export default {
       console.log(this.rowId);
     },
     detailShow: function(id) {
-      this.$router.push({
-        name: "stateCert",
-        params: {
-          id: id
-        }
-      });
+      //   this.$router.push({
+      //     name: "stateCert",
+      //     params: {
+      //       id: id
+      //     }
+      //   });
+    },
+    changeTableData() {
+      var self = this;
+      self.tableData.list = self.$store.state.list;
+      self.tableData.total = self.$store.state.total;
     }
   }
 };
