@@ -1,62 +1,85 @@
 <!-- æˆ‘æå‡ºçš„ -->
 <template>
-	<div>
-		<Table :tableData="tableData"  :tabListData="tabListData"></Table>
-	</div>
+  <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
-	import Table from "@/components/common/table.vue"
-	var requireTableData = require('@/assets/data/table2.json')
-	export default {
-		
-		components:{
-			Table
-		},
-		created() {
-			this.tableData=requireTableData
-			// this.totalNum=requireTableData.total
-		},
-		data() {
-		  return {
-				tableData:"",
-				tabListData:[
-					{
-						title:"½»Ò×hash",   // ±í¸ñÁĞ ±êÌâ
-						el_data:"address"  //±í¸ñÁĞ Êı¾İ×Ö¶ÎÃû³Æ
-					},{
-						title:"¸ß¶È",
-						el_data:"name"
-					},{
-						title:"´æÖ¤hsah",
-						el_data:"address"
-					},{
-						title:"ËùÊôÕË»§",
-						el_data:"address"
-					},{
-						title:"´æÖ¤Ê±¼ä",
-						el_data:"date"
-					}
-					
-				]
-		  }
-		},
-		methods: {
-			getRowId(value) {
-			    this.rowId = value;
-				console.log(this.rowId);
-			},
-			//±í¸ñĞĞÌø×ªÏêÇéÒ³
-			detailShow:function(id){
-				this.$router.push({
-					name:'stateCert',
-					params:{ 
-						id:id,
-					}
-				})
-			}
-		},
-	}
+import Table from "@/components/common/table.vue";
+export default {
+  components: {
+    Table
+  },
+  beforeCreate() {
+    var self = this;
+    self.$store
+      .dispatch("getTableData", {
+        pageNumber: 1,
+        pageSize: 10,
+        tableType: 2
+      })
+      .then(() => {
+        self.tableData.list = self.$store.state.list;
+        self.tableData.total = self.$store.state.total;
+        self.flag = true;
+      });
+  },
+  data() {
+    return {
+      flag: false,
+      //æ¥æ”¶å­ç»„ä»¶ä¼ æ¥çš„æ•°æ®
+      // rowId:"",
+      // ä¼ é€’åˆ°å­ç»„ä»¶çš„æ•°æ®
+      tableData: {
+        list: [],
+        total: 0
+      },
+      tabListData: [
+        {
+          title: "äº¤æ˜“hash", // è¡¨æ ¼åˆ— æ ‡é¢˜
+          el_data: "txHash" //è¡¨æ ¼åˆ— æ•°æ®å­—æ®µåç§°
+        },
+        {
+          title: "é«˜åº¦",
+          el_data: "height"
+        },
+        {
+          title: "å£°æ˜ID",
+          el_data: "claimId"
+        },
+        {
+          title: "å£°æ˜å†…å®¹hash",
+          el_data: "claimContent"
+        },
+        {
+          title: "æ‰€å±è´¦æˆ·",
+          el_data: "issuer"
+        },
+        {
+          title: "æåˆ°è€…",
+          el_data: "holder"
+        },
+        {
+          title: "å£°æ˜æ—¶é—´",
+          el_data: "timestamp"
+        }
+      ]
+    };
+  },
+  methods: {
+    getRowId(value) {
+      this.rowId = value;
+      console.log(this.rowId);
+    },
+    detailShow: function(id) {
+      this.$router.push({
+        name: "stateCert",
+        params: {
+          id: id
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style>
