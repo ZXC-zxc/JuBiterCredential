@@ -78,14 +78,19 @@ export default {
       box-sizing: border-box;
       padding: 20px;
       font-size: 16px;
+	  margin-top: 20px;
     }
   }
   .relatedDiv {
     flex-direction: row;
     align-items: center;
+	margin-bottom: 20px;
     h3 {
-      line-height: 55px;
+      // line-height: 55px;
       margin-right: 20px;
+	  font-size: 17px;
+	  width: 160px;
+	      // margin-bottom: 20px;
     }
     input {
       height: 46px;
@@ -102,7 +107,7 @@ export default {
   }
   button {
     width: 165px;
-    margin-top: 42px;
+    // margin-top: 42px;
     height: 42px;
     font-size: 17px;
     letter-spacing: 3px;
@@ -116,6 +121,6 @@ export default {
 }
 h3 {
   margin: 0;
-  height: 55px;
+  // height: 55px;
 }
 </style>

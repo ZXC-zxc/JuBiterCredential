@@ -5,22 +5,25 @@
 			<img src="@/assets/images/logo.png" />
 		</div>
 		<ul>
-			<li>
+			<li class="">
 				<router-link to="/Jubiter/cz/copyright">
 					<img :src='icon1Img'  />
 					<p :class="[btnId=='icon1'?'select':'']">我的著作权</p>
+					<span :class="[btnId=='icon1'?'navActive':'']"></span>
 				</router-link>
 			</li>
 			<li>
 				<router-link to="/Jubiter/cz/statement">
 					<img :src="icon2Img"  />
 					<p :class="[btnId=='icon2'?'select':'']">我的声明</p>
+					<span :class="[btnId=='icon2'?'navActive':'']"></span>
 				</router-link>
 			</li>
 			<li>
 				<router-link to="/Jubiter/cz/processed">
 					<img :src="icon3Img"  />
 					<p :class="[btnId=='icon3'?'select':'']">我的待处理</p>
+					<span :class="[btnId=='icon3'?'navActive':'']"></span>
 				</router-link>
 			</li>
 		</ul>
@@ -50,7 +53,8 @@
 			
 		],
 		mounted() {
-			
+			// $(".router-link-active").append(`<span class="navActive" v-show=""></span>`)
+			// alert(1)
 		},
 		methods:{
 			
@@ -103,9 +107,20 @@
 			flex-direction: column;
 			justify-content: center;
 			padding: 0;
+				
+			.navActive{
+				position: absolute;
+				width: 8px;
+				height: 62%;
+				background: white;
+				top: 36%;
+				transform: translateY(-50%);
+				border-radius: 0 10px 10px 0;
+			}
 			li{
 				margin: 30px 0;
 				list-style: none;
+				position: relative;
 			}
 			img{
 				display: block;

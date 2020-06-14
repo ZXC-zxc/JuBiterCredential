@@ -60,7 +60,7 @@ export default {
   flex: 1;
   div {
     width: 70%;
-    max-width: 470px;
+    max-width: 546px;
     label {
       display: block;
       margin-bottom: 15px;
@@ -71,10 +71,14 @@ export default {
       min-width: 200px;
       max-width: 600px;
       /* border: 1px solid; */
-      height: 50px;
+      min-height: 25px;
+	  padding: 10px 15px;
       background-color: white;
       box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
+	  word-break: break-all;
+	  line-height: 25px;
+	  
     }
   }
   div:nth-child(1) {

@@ -64,9 +64,10 @@ a {
   section:nth-child(2) {
     flex: 1;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     flex-direction: column;
+	margin-top: 20%;
   }
 }
 </style>
