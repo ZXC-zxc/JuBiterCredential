@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { applyList } from "../../assets/api/authApply";
 export default {
   data: function() {
     return {
@@ -27,27 +27,9 @@ export default {
   methods: {
     fetchApplys() {
       var self = this;
-      axios
-        .post(
-          "jubiter-credential-web/admin/apply/list.action",
-          {
-            data: {
-              pageSize: 10,
-              pageNumber: 1,
-              type: "receive"
-            }
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*", //解决cors头问题
-              "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/json" //将表单数据传递转化为request payload类型
-            },
-            withCredentials: true
-          }
-        )
-        .then(function(response) {
-          var res = response.data;
+      var param = { pageSize: 10, pageNumber: 1, type: "receive" };
+      applyList(param)
+        .then(function(res) {
           self.applys = res.list;
           self.total = res.total;
         })

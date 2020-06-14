@@ -12,8 +12,7 @@
 </template>
 
 <script>
-// const categoryData = require('@/assets/data/category/001.json')
-import axios from "axios";
+import { deviceLogin } from "../assets/api/userApi";
 export default {
   data: function() {
     return {
@@ -30,29 +29,15 @@ export default {
         .then(sn => {
           if (sn == "") return;
           clearInterval(interval);
-          axios
-            .post(
-              "jubiter-credential-web/admin/shiro/device/login.action",
-              {
-                data: { deviceSn: sn }
-              },
-              {
-                headers: {
-                  "Access-Control-Allow-Origin": "*", //解决cors头问题
-                  "Access-Control-Allow-Credentials": "true", //解决session问题
-                  "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
-                },
-                withCredentials: true
-              }
-            )
-            .then(function(response) {
-              var res = response.data;
+          var param = { deviceSn: sn };
+          deviceLogin(param)
+            .then(function(res) {
               if (res.code == "ok-000000") {
                 self.$router.push({
                   path: "/Jubiter/cz/copyright"
                 });
               } else {
-                alert(respresonse.msg);
+                alert(res.msg);
               }
             })
             .catch(function(error) {
@@ -67,29 +52,15 @@ export default {
   methods: {
     linkIndex: function() {
       let self = this;
-      axios
-        .post(
-          "jubiter-credential-web/admin/shiro/device/login.action",
-          {
-            data: { deviceSn: "JUBLD20051200005" }
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*", //解决cors头问题
-              "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
-            },
-            withCredentials: true
-          }
-        )
-        .then(function(response) {
-          var res = response.data;
+      var param = { deviceSn: "JUBLD20051200005" };
+      deviceLogin(param)
+        .then(function(res) {
           if (res.code == "ok-000000") {
             self.$router.push({
               path: "/Jubiter/cz/copyright"
             });
           } else {
-            alert(respresonse.msg);
+            alert(res.msg);
           }
         })
         .catch(function(error) {
