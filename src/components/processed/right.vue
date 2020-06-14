@@ -8,7 +8,7 @@
       <label>给</label>
       <span>{{apply.to}}</span>
     </div>
-    <div class="btnDiv">
+    <div v-if="apply.status===0 || apply.status===1" class="btnDiv">
       <el-button @click.native="submitAuth()">授权</el-button>
     </div>
   </section>
@@ -19,7 +19,7 @@ export default {
   props: ["selectedApply"],
   data() {
     return {
-      apply: this.selectedApply || { hash: "", to: "" }
+      apply: this.selectedApply || { hash: "", to: "", id: 0, status: 0 }
     };
   },
   watch: {
@@ -40,6 +40,7 @@ export default {
       addCredentialAuthClaim(param)
         .then(function(res) {
           if (res.code == "ok-000000") {
+            self.$parent.changeApplyStatus({ id: self.apply.id, status: 2 });
             self.$router.push({
               path: "/Jubiter/cz/processed"
             });
@@ -80,23 +81,22 @@ export default {
   div:nth-child(1) {
     margin-bottom: 30px;
   }
-  .btnDiv{
-		  
-	  button{
-		      float: right;
-		      width: 165px;
-		      margin-top: 42px;
-		      height: 46px;
-		      font-size: 17px;
-		      letter-spacing: 3px;
-		      -webkit-box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
-		      box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
-		      background: #181818;
-		      border: 0;
-		      outline: none;
-		      color: white;
-		      border-radius: 8px;
-	  }
+  .btnDiv {
+    button {
+      float: right;
+      width: 165px;
+      margin-top: 42px;
+      height: 46px;
+      font-size: 17px;
+      letter-spacing: 3px;
+      -webkit-box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 27px rgba(0, 0, 0, 0.4);
+      background: #181818;
+      border: 0;
+      outline: none;
+      color: white;
+      border-radius: 8px;
+    }
   }
 }
 </style>
