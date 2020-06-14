@@ -70,12 +70,12 @@ export default {
     },
     // '/Jubiter/cz/copyright/certificate/:id'
     detailShow: function(id) {
-      this.$router.push({
-        name: "certificate",
-        params: {
-          id: id
-        }
-      });
+      // this.$router.push({
+      //   name: "certificate",
+      //   params: {
+      //     id: id
+      //   }
+      // });
     }
   },
   mounted() {

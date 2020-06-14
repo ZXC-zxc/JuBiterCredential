@@ -75,12 +75,12 @@ export default {
       console.log(this.rowId);
     },
     detailShow: function(id) {
-      this.$router.push({
-        name: "stateCert",
-        params: {
-          id: id
-        }
-      });
+      //   this.$router.push({
+      //     name: "stateCert",
+      //     params: {
+      //       id: id
+      //     }
+      //   });
     }
   }
 };
