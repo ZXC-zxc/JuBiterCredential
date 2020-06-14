@@ -10,20 +10,26 @@
         <el-tab-pane label="文件上传  /">
           <el-upload
             class="input"
+            ref="upload"
             action="jubiter-credential-web/admin/credential/add.action"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
+            :on-change="handleChange"
             :before-remove="beforeRemove"
             multiple
             :limit="1"
             :on-exceed="handleExceed"
             :file-list="fileList"
+            :auto-upload="false"
           >
             <el-button type="primary">
               <img src="@/assets/images/icon/file.png" />
               <span>Select File</span>
             </el-button>
           </el-upload>
+          <div class="btnDiv">
+            <el-button @click.native="submitUpload()">存证</el-button>
+          </div>
         </el-tab-pane>
         <el-tab-pane label="填写Hash">
           <el-form ref="form" :model="form">
@@ -40,6 +46,11 @@
   </div>
 </template>
 <script>
+import {
+  credentialHashAdd,
+  credentialAddUrl
+} from "../../assets/api/copyrightApi";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -66,28 +77,27 @@ export default {
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
+    handleChange(file, fileList) {
+      this.fileList = fileList;
+    },
+    beforeCreat() {
+      this.credentialAddUrl = credentialAddUrl;
+    },
+    submitUpload(content) {
+      this.$refs.upload.submit();
+    },
     submit() {
-      var self = this;
-      this.$axios
-        .post(
-          "jubiter-credential-web/admin/credential/hash/add.action",
-          {
-            data: {
-              hash: self.form.hash
-            }
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*", //解决cors头问题
-              "Access-Control-Allow-Credentials": "true", //解决session问题
-              "Content-Type": "application/x-www-form-urlencoded" //将表单数据传递转化为request payload类型
-            },
-            withCredentials: true
+      let self = this;
+      var param = { hash: self.form.hash };
+      credentialHashAdd(param)
+        .then(function(res) {
+          if (res.code == "ok-000000") {
+            self.$router.push({
+              path: "/Jubiter/cz/copyright/"
+            });
+          } else {
+            alert(res.msg);
           }
-        )
-        .then(function(response) {
-          var res = response.data;
-          console.error("admin/credential/hash/add.action" + res);
         })
         .catch(function(error) {
           alert(error);
