@@ -1,8 +1,6 @@
 <!-- 提到我的 -->
 <template>
-	<div>
-		<Table :tableData="tableData"></Table>
-	</div>
+	<Table :tableData="tableData"></Table>
 </template>
 
 <script>

@@ -50,13 +50,14 @@
 	.statementView{
 		width: 100%;
 		height: 100%;
-		padding: 60px 44px;
 		box-sizing: border-box;
 		position: relative;
+		padding: 60px 20px 40px 20px;
 		section{
-			height: 94%;
-			overflow: scroll;
-			margin-top: 30px;
+			height: 98%;
+			overflow-y: auto;
+			margin-top: 20px;
+			display: flex;
 		}
 		.icon{
 			position: absolute;
