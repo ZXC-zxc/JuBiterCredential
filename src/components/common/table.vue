@@ -35,8 +35,7 @@ export default {
   methods: {
     //存证证书详情页
     getDetail(row) {
-      alert(row.id);
-      this.$parent.detailShow(row.id);
+      this.$parent.detailShow(row);
       // this.rowId = row.id
       // this.$emit("rowId",row.id);
     }

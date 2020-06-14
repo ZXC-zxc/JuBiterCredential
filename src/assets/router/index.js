@@ -77,13 +77,13 @@ const routes = [
 	},
 	//详情
 	{
-		path: '/Jubiter/cz/copyright/certificate/:id',   //参数:表格数据ID
+		path: '/Jubiter/cz/copyright/certificate/:hash',   //参数:表格数据ID
 		name: 'certificate',
 		component: certificate,
 	},
 	// 授权给
 	{
-		path: '/Jubiter/cz/copyright/certificate/:id/licensed',
+		path: '/Jubiter/cz/copyright/certificate/:hash/licensed',
 		name: 'licensed',
 		component: licensed,
 	},
