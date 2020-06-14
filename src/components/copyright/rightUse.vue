@@ -1,6 +1,6 @@
 <!-- 使用有权 -->
 <template>
-    <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
+  <Table :tableData="tableData" :tabListData="tabListData" v-if="flag"></Table>
 </template>
 
 <script>
