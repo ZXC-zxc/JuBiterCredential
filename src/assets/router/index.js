@@ -22,6 +22,7 @@ import putForward from '@/components/statement/putForward.vue'
 import mentioned from '@/components/statement/mentioned.vue'
 import statementAdd from '@/components/statement/add.vue'   //添加
 import stateCert from '@/components/statement/certificate.vue'  //存证证书
+// import lookHardware from '@/components/statement/lookHardware.vue'  //存证证书
 
 
 // 待处理

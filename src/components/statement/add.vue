@@ -9,30 +9,33 @@
       <input v-model="to" type="text" value />
     </div>
     <button @click="submit">确定</button>
+	<lookHardware v-show="show"></lookHardware>
   </div>
 </template>
 
 <script>
-import { statementAdd } from "../../assets/api/statementApi";
+import lookHardware from "@/components/statement/lookHardware.vue"
 export default {
   data: function() {
     return {
-      content: "",
-      to: ""
+		show:false,
+		content: "",
+		to: ""
     };
   },
   mounted() {},
-  components: {},
+  components: {lookHardware},
   methods: {
+	  
+	  
     submit() {
       let self = this;
       var param = { claimContent: this.content, to: this.to };
       statementAdd(param)
         .then(function(res) {
           if (res.code == "ok-000000") {
-            self.$router.push({
-              path: "/Jubiter/cz/statement/"
-            });
+			  alert(this.show)
+			  this.show = true
           } else {
             alert(res.msg);
           }
@@ -55,7 +58,8 @@ export default {
   height: 100%;
   padding: 55px 40px 55px 60px;
   box-sizing: border-box;
-  div {
+  position: relative;
+  .contentDiv,.relatedDiv {
     width: 100%;
     display: flex;
     flex-direction: column;
