@@ -35,13 +35,26 @@
 </template>
 
 <script>
-export default {
-  data: function() {
-    return {};
-  },
-  props: [],
-  watch: {}
-};
+	export default {
+		data: function() {
+			return {};
+		},
+		mounted() {
+			// toImage()
+		},
+		methods:{
+			// toImage() {
+			//     html2canvas(this.$refs.imageWrapper,{
+			//         backgroundColor: null
+			//     }).then((canvas) => {
+			//         let dataURL = canvas.toDataURL("image/png");
+			//         this.dataURL = dataURL;
+			//     });
+			// }
+		},
+		props: [],
+		watch: {}
+	};
 </script>
 
 <style  lang="scss" scoped="scoped">
