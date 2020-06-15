@@ -27,11 +27,6 @@ axios.interceptors.request.use((config) => {
 	accessToken = "scan"
 	const userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
 	const time = new Date().getTime();
-	let token = window.localStorage['JSESSIONID'];
-	if (token) {
-		//将token放到请求头发送给服务器,将tokenkey放在请求头中
-		config.headers.accessToken = token;
-	}
 	//文件上传
 	if (config.headers['Content-Type'] == 'multipart/form-data') {
 		config.data.set('accessToken', accessToken);
