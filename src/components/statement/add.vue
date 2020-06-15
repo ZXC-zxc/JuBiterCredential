@@ -9,39 +9,48 @@
       <input v-model="to" type="text" value />
     </div>
     <button @click="submit">确定</button>
-	<lookHardware v-show="show"></lookHardware>
+    <lookHardware v-show="show"></lookHardware>
   </div>
 </template>
 
 <script>
-import lookHardware from "@/components/statement/lookHardware.vue"
+import lookHardware from "@/components/statement/lookHardware.vue";
+import { statementAdd } from "../../assets/api/statementApi";
 export default {
   data: function() {
     return {
-		show:false,
-		content: "",
-		to: ""
+      show: false,
+      content: "",
+      to: ""
     };
   },
   mounted() {},
-  components: {lookHardware},
+  components: { lookHardware },
   methods: {
-	  
-	  
     submit() {
       let self = this;
-	  self.show=true;
+      self.show = true;
       var param = { claimContent: this.content, to: this.to };
-      statementAdd(param)
-        .then(function(res) {
-          if (res.code == "ok-000000") {
-			  alert(this.show)
-			  this.show = true
-          } else {
-            alert(res.msg);
-          }
+      self.$socketApi.jubiterOper
+        .statement(param.claimContent, param.to)
+        .then(() => {
+          self.show = false;
+          statementAdd(param)
+            .then(function(res) {
+              if (res.code == "ok-000000") {
+                self.$router.push({
+                  path: "/Jubiter/cz/statement"
+                });
+              } else {
+                alert(res.msg);
+              }
+            })
+            .catch(function(error) {
+              alert(error);
+            });
         })
         .catch(function(error) {
+          self.show = false;
           alert(error);
         });
     }
@@ -60,7 +69,8 @@ export default {
   padding: 55px 40px 55px 60px;
   box-sizing: border-box;
   position: relative;
-  .contentDiv,.relatedDiv {
+  .contentDiv,
+  .relatedDiv {
     width: 100%;
     display: flex;
     flex-direction: column;
