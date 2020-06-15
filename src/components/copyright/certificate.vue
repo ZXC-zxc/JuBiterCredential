@@ -1,7 +1,7 @@
 <!-- 存证证书 -->
 <template>
   <div class="certDiv">
-    <cert></cert>
+    <cert :certData="certData"></cert>
     <div class="btnDiv">
       <div>
         <button @click="licensed()">授权给</button>
@@ -15,12 +15,16 @@
 <script>
 import cert from "@/components/common/cert.vue";
 import { linkBlockChainExploerByTxhash } from "../../assets/api/exploerApi";
+import { queryCredentialByHash } from "../../assets/api/credentialApi";
 export default {
   data: function() {
     return {
       certData: {
-        owner: "ABCDEFGHIJK",
-        user: "ABCDEFGHIJK"
+        owner: "",
+        user: "",
+        hash: "",
+        time: "",
+        createtime: ""
       }
     };
   },
@@ -29,6 +33,25 @@ export default {
   },
   created() {
     // alert(this.$route.params.hash);
+    var self = this;
+    var hash = this.$route.params.hash;
+    var param = { hash: hash };
+    queryCredentialByHash(param)
+      .then(function(res) {
+        if (res.code == "ok-000000") {
+          var credentialInfo = JSON.parse(res.msg);
+          self.certData.owner = credentialInfo.owner;
+          self.certData.user = credentialInfo.holders;
+          self.certData.hash = credentialInfo.hash;
+          self.certData.time = credentialInfo.time;
+          self.certData.createtime = self.getTime();
+        } else {
+          alert(res.msg);
+        }
+      })
+      .catch(function(error) {
+        alert(error);
+      });
   },
   methods: {
     licensed: function() {
@@ -55,6 +78,28 @@ export default {
     },
     linkBlockChainExploer: function() {
       linkBlockChainExploerByTxhash(this.$route.params.txhash);
+    },
+    getTime() {
+      var date1 = new Date();
+      var year = date1.getFullYear();
+      var month = date1.getMonth() + 1;
+      var day = date1.getDate();
+      var hours = date1.getHours();
+      var minutes = date1.getMinutes();
+      var seconds = date1.getSeconds();
+      return (
+        year +
+        "年" +
+        month +
+        "月" +
+        day +
+        "日" +
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds
+      );
     }
   }
 };

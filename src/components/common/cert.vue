@@ -5,29 +5,29 @@
       <div>
         <p>
           <span>所有人</span>
-          <span>Avfdvcsv88888888DDDDDDDDDDDDD88888888888DDDDDDDdDDD</span>
+          <span>{{ certData.owner }}</span>
         </p>
         <p>
           <span>可使用者</span>
-          <span>AvfdvcsD88888888888DDDDDDDdDDD</span>
+          <span>{{ certData.user }}</span>
         </p>
         <p>
           <span>著作权指纹(HASH)</span>
-          <span>AvfdDDDDDDDDDDD88888888888DDDDDDDdDDD</span>
+          <span>{{ certData.hash }}</span>
         </p>
         <p>
-          <span>创建时间</span>
-          <span>2020-02-25</span>
+          <span>时间戳</span>
+          <span>{{ certData.time }}</span>
         </p>
       </div>
       <div>
         <p>
           <span>颁发日期:</span>
-          <span>2020年2月25日</span>
+          <span>{{ certData.createtime }}</span>
         </p>
         <p>
           <span>飞天诚信</span>
-          <span>2020年2月25日</span>
+          <span>{{ certData.createtime }}</span>
         </p>
       </div>
     </div>
@@ -35,26 +35,26 @@
 </template>
 
 <script>
-	export default {
-		data: function() {
-			return {};
-		},
-		mounted() {
-			// toImage()
-		},
-		methods:{
-			// toImage() {
-			//     html2canvas(this.$refs.imageWrapper,{
-			//         backgroundColor: null
-			//     }).then((canvas) => {
-			//         let dataURL = canvas.toDataURL("image/png");
-			//         this.dataURL = dataURL;
-			//     });
-			// }
-		},
-		props: [],
-		watch: {}
-	};
+export default {
+  data: function() {
+    return {};
+  },
+  mounted() {
+    // toImage()
+  },
+  methods: {
+    // toImage() {
+    //     html2canvas(this.$refs.imageWrapper,{
+    //         backgroundColor: null
+    //     }).then((canvas) => {
+    //         let dataURL = canvas.toDataURL("image/png");
+    //         this.dataURL = dataURL;
+    //     });
+    // }
+  },
+  props: ["certData"],
+  watch: {}
+};
 </script>
 
 <style  lang="scss" scoped="scoped">
