@@ -33,15 +33,22 @@ export default {
         hash: this.$parent.tempData.hash,
         holder: this.$parent.tempData.value
       };
-      addCredentialAuthClaim(param)
-        .then(function(res) {
-          if (res.code == "ok-000000") {
-            self.$router.push({
-              path: "/Jubiter/cz/copyright/"
+      self.$socketApi.jubiterOper
+        .authorize(param.hash, param.holder)
+        .then(() => {
+          addCredentialAuthClaim(param)
+            .then(function(res) {
+              if (res.code == "ok-000000") {
+                self.$router.push({
+                  path: "/Jubiter/cz/copyright/"
+                });
+              } else {
+                alert(res.msg);
+              }
+            })
+            .catch(function(error) {
+              alert(error);
             });
-          } else {
-            alert(res.msg);
-          }
         })
         .catch(function(error) {
           alert(error);
