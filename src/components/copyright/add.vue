@@ -16,6 +16,7 @@
             :on-exceed="handleExceed"
             :file-list="fileList"
             :auto-upload="false"
+            :on-success="handleAvatarSucess"
           >
             <el-button type="primary">
               <img src="@/assets/images/icon/file.png" />
@@ -67,6 +68,15 @@ export default {
           files.length
         } 个文件，共选择了 ${files.length + fileList.length} 个文件`
       );
+    },
+    handleAvatarSucess(res, file, fileList) {
+      if (res.code == "ok-000000") {
+        this.$router.push({
+          path: "/Jubiter/cz/copyright/"
+        });
+      } else {
+        alert(res.msg);
+      }
     },
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`);
