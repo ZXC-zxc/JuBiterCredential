@@ -4,7 +4,7 @@
       <h3>{{tempData.title}}</h3>
       <div class="btnDiv">
         <input type="text" v-model="tempData.value" :readonly="tempData.readonly" />
-        <button @click="btnclick">{{tempData.btn}}</button>
+        <button @click="childMethod">{{tempData.btn}}</button>
       </div>
     </div>
   </div>
@@ -27,33 +27,36 @@ export default {
         name: this.tempData.path
       });
     },
-    btnclick: function() {
-      let self = this;
-      var param = {
-        hash: this.$parent.tempData.hash,
-        holder: this.$parent.tempData.value
-      };
-      self.$socketApi.jubiterOper
-        .authorize(param.hash, param.holder)
-        .then(() => {
-          addCredentialAuthClaim(param)
-            .then(function(res) {
-              if (res.code == "ok-000000") {
-                self.$router.push({
-                  path: "/Jubiter/cz/copyright/"
-                });
-              } else {
-                alert(res.msg);
-              }
-            })
-            .catch(function(error) {
-              alert(error);
-            });
-        })
-        .catch(function(error) {
-          alert(error);
-        });
+    childMethod() {
+    	this.$parent.btnclick();
     }
+    // btnclick: function() {
+    //   let self = this;
+    //   var param = {
+    //     hash: this.$parent.tempData.hash,
+    //     holder: this.$parent.tempData.value
+    //   };
+    //   self.$socketApi.jubiterOper
+    //     .authorize(param.hash, param.holder)
+    //     .then(() => {
+    //       addCredentialAuthClaim(param)
+    //         .then(function(res) {
+    //           if (res.code == "ok-000000") {
+    //             self.$router.push({
+    //               path: "/Jubiter/cz/copyright/"
+    //             });
+    //           } else {
+    //             alert(res.msg);
+    //           }
+    //         })
+    //         .catch(function(error) {
+    //           alert(error);
+    //         });
+    //     })
+    //     .catch(function(error) {
+    //       alert(error);
+    //     });
+    // }
   }
 };
 </script>

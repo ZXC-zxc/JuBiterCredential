@@ -38,6 +38,9 @@ export default {
           statementAdd(param)
             .then(function(res) {
               if (res.code == "ok-000000") {
+                self.$router.push({
+                  path: "/Jubiter/cz/statement"
+                });
               } else {
                 alert(res.msg);
               }
