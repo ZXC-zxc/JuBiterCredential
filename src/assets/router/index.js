@@ -34,12 +34,12 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/Jubiter',
+		path: '/',
 		name: 'home',
 		component: home
 	},
 	{
-		path: '/',
+		path: '/copyright',
 		name: 'copyright',
 		component: copyright,
 
@@ -78,7 +78,12 @@ const routes = [
 	},
 	//详情
 	{
+<<<<<<< HEAD
 		path: '/Jubiter/cz/copyright/certificate/:hash',   //参数:表格数据ID
+=======
+		// path: '/Jubiter/cz/copyright/certificate/:hash',   //参数:表格数据ID
+		path: '/Jubiter/cz/copyright/certificate',
+>>>>>>> 599240fe056071f1fbc10f212b91e04f54b58616
 		name: 'certificate',
 		component: certificate,
 	},

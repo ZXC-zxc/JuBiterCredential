@@ -25,10 +25,10 @@
 			subNav
 		},
 		created() {
-			this.$router.push({
-				path: "/Jubiter",
-				// localStorage.setItem("homeShow",true);
-			});
+			// this.$router.push({
+			// 	path: "/Jubiter",
+			// 	// localStorage.setItem("homeShow",true);
+			// });
 			
 		},
 		mounted() {
@@ -37,6 +37,11 @@
 			
 		},
 		watch: {
+			$route(to, from) {
+			     if (to.path == '/') {
+					 localStorage.setItem("homeShow",true);
+				}
+			}
 		}
 	}
 </script>
