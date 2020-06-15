@@ -21,7 +21,7 @@ console.log(actNo + "-----------actNo--outputDir---" + outputDir)
 
 const baseUrl = process.env.NODE_ENV === 'production' ? '/' + outputDir + '/' : '/'
 
-const titleName = "JuBiterCZ页面"  //index title名称
+const titleName = "军民融合Demo"  //index title名称
 
 
 const timestamp = new Date().getTime();  //当前时间为了防止打包缓存不刷新，所以给每个js文件都加一个时间戳
@@ -41,8 +41,7 @@ module.exports = {
 		port: 8080, // 端口
 		proxy: {
 			'/': {
-				// target: 'http://39.102.38.32:8082/',  // target host
-				target: 'http://192.168.17.45:8471',
+				target: 'http://39.102.38.32:8082/',  // target host
 				ws: true,  // proxy websockets
 				changeOrigin: true,  // needed for virtual hosted sites
 				pathRewrite: {
