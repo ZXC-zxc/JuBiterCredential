@@ -1,6 +1,6 @@
 <!-- 存证证书 -->
 <template>
-	<div class="certDiv">
+	<div class="cert-div">
 		<cert></cert>
 		<div class="btnDiv">
 			<button class="browser-btn">区块链浏览器</button>
@@ -32,17 +32,17 @@
 </script>
 
 <style lang="scss" scoped="scoped">
-	.certDiv{
+	.cert-div{
 		width: 100%;
 		height: 100%;
 		position: relative;
 		#certificate{
-			position: relative;
-			display: flex;
-			width: 100%;
-			align-items: center;
-			justify-content: center;
-			height: 100%;
+			// position: relative;
+			// display: flex;
+			// width: 100%;
+			// align-items: center;
+			// justify-content: center;
+			// height: 100%;
 			.bg{
 				position: absolute;
 				width: 88%;

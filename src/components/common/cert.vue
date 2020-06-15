@@ -59,35 +59,35 @@ export default {
 
 <style  lang="scss" scoped="scoped">
 .certDiv {
-  width: 100%;
-  height: 100%;
-  position: relative;
+      
   #certificate {
     position: relative;
     display: flex;
-    width: 100%;
+	width: 88%;
+	max-width: 900px;
+    // width: 100%;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    // height: 100%;
     .bg {
-      position: absolute;
-      width: 88%;
-      max-width: 900px;
-      min-width: 652px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
+      // position: absolute; */
+          width: 100%;
+          max-width: 900px;
+
+          z-index: 0;
     }
     .content {
-      position: absolute;
-      z-index: 1;
-      max-width: 670px;
-      width: 60%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      // font-size: ;
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		width: 80%;
+		max-width: 700px;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 54%;
+		display: flex;
+		margin-top: 18%;
+      
       div:first-child {
         p {
           display: flex;
@@ -96,7 +96,7 @@ export default {
             font-size: 15px;
             color: #666666;
             font-weight: 600;
-            width: 85px;
+            width: 170px;
           }
           span:last-child {
             width: calc(100% - 85px);

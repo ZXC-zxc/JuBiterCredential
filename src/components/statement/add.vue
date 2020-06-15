@@ -1,8 +1,8 @@
 <template>
   <div id="add">
-    <div class="contentDiv">
+    <div class="relatedDiv">
       <h3>内容</h3>
-      <textarea v-model="content"></textarea>
+	  <input v-model="content" type="text" value />
     </div>
     <div class="relatedDiv">
       <h3>相关人</h3>
@@ -82,9 +82,11 @@ export default {
   .relatedDiv {
     flex-direction: row;
     align-items: center;
+	margin-bottom: 28px;
     h3 {
       line-height: 55px;
       margin-right: 20px;
+	  width: 75px;
     }
     input {
       height: 46px;

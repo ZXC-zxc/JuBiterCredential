@@ -1,15 +1,15 @@
 <!-- 首页--插入硬件 -->
 <template>
-  <div class="home">
-	  <p>军民融合区块链系统</p>
-    <div class="imgDiv" @click="linkIndex()">
-      <img class="hardware" src="@/assets/images/home/hardware.png" />
-      <div>
-        <img src="../assets/images/home/cable.png" />
-      </div>
-    </div>
-    <h3>请插入JuBiter</h3>
-  </div>
+	<div class="home">
+		<p>军民融合区块链系统</p>
+		<div class="imgDiv" @click="linkIndex()">
+			<img class="hardware" src="@/assets/images/home/hardware.png" />
+			<div>
+				<img src="../assets/images/home/cable.png" />
+			</div>
+		</div>
+		<h3>请插入JuBiter</h3>
+	</div>
 </template>
 
 <script>
