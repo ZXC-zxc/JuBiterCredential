@@ -21,7 +21,7 @@ console.log(actNo + "-----------actNo--outputDir---" + outputDir)
 
 const baseUrl = process.env.NODE_ENV === 'production' ? '/' + outputDir + '/' : '/'
 
-const titleName = "JuBiterCZ页面"  //index title名称
+const titleName = "军民融合区块链系统Demo"  //index title名称
 
 
 const timestamp = new Date().getTime();  //当前时间为了防止打包缓存不刷新，所以给每个js文件都加一个时间戳
