@@ -42,7 +42,7 @@ module.exports = {
 		proxy: {
 			'/': {
 				// target: 'http://39.102.38.32:8082/',  // target host
-				 target: 'http://192.168.17.45:8471',
+				target: 'http://192.168.17.45:8471',
 				ws: true,  // proxy websockets
 				changeOrigin: true,  // needed for virtual hosted sites
 				pathRewrite: {
@@ -51,11 +51,11 @@ module.exports = {
 			},
 		},
 		historyApiFallback: {
-		   rewrites: [{
-			   from: /.*/g,
-			   to: '/index.html' //与output的publicPath有关(HTMLplugin生成的html默认为index.html)
+			rewrites: [{
+				from: /.*/g,
+				to: '/index.html' //与output的publicPath有关(HTMLplugin生成的html默认为index.html)
 			}]
-	   }
+		}
 	},
 	pages,
 	css: {

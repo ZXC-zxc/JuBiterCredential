@@ -6,7 +6,7 @@ import layer from '@/assets/js/util/layer.js'
 import qs from 'qs'
 Vue.use(VueAxios, axios)
 // 请求超时
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 500000
 
 let baseUrl = "/"
 if (process.env.NODE_ENV == "production") {
