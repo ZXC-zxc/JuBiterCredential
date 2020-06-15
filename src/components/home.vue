@@ -1,6 +1,7 @@
 <!-- 首页--插入硬件 -->
 <template>
   <div class="home">
+	  <p>军民融合区块链系统</p>
     <div class="imgDiv" @click="linkIndex()">
       <img class="hardware" src="@/assets/images/home/hardware.png" />
       <div>
@@ -85,20 +86,24 @@ export default {
   align-items: center;
   background: url(../assets/images/home/bg.png);
   overflow: hidden;
+  p{
+	    position: absolute;
+	    top: 0;
+	    color: white;
+	    margin-top: 70px;
+	    font-size: 40px;
+	    letter-spacing: 2px;
+  }
   .imgDiv {
     width: 100%;
-    margin-top: -5%;
+    // margin-top: -5%;
     display: flex;
     justify-content: center;
     position: relative;
     div {
       position: absolute;
-      /* left: 81.5%; */
       top: 59.7%;
       height: 68px;
-      /* transform: translateX(-50%); */
-      /* margin-left: 30%; */
-      /* margin-left: calc(100% * 0.161); */
       margin-left: 418px;
       animation: myfirst 1.5s;
       img {
@@ -108,9 +113,6 @@ export default {
   }
   .hardware {
     width: 570px;
-    // width: 40%;
-    // max-width: 610px;
-    // min-width: 500px;
   }
   h3 {
     color: white;
@@ -118,22 +120,11 @@ export default {
     text-align: center;
   }
 }
-div {
-  // width:100px;
-  // height:100px;
-  // background:red;
-  // position:relative;
-  // animation:myfirst 5s;
-  // -webkit-animation:myfirst 5s; /* Safari and Chrome */
-}
 
 @keyframes myfirst {
   0% {
     margin-left: 1049px;
   }
-  // 25%  {margin-left: 1649px;}
-  // 50%  {margin-left: 1249px;}
-  // 75%  {margin-left: 849px;}
   100% {
     margin-left: 418px;
   }
