@@ -30,6 +30,7 @@ export default {
 	  
     submit() {
       let self = this;
+	  self.show=true;
       var param = { claimContent: this.content, to: this.to };
       statementAdd(param)
         .then(function(res) {
