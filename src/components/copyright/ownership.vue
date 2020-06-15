@@ -71,8 +71,8 @@ export default {
     // '/Jubiter/cz/copyright/certificate/:id'
     detailShow: function(row) {
       this.$router.push({
-        path: "/Jubiter/cz/copyright/certificate",
-        query: {
+        name: "certificate",
+        params: {
           hash: row.claimContent,
           txhash: row.txHash
         }
