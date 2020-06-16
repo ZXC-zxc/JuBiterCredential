@@ -1,15 +1,15 @@
 <!-- 首页--插入硬件 -->
 <template>
-	<div class="home">
-		<p>军民融合区块链系统</p>
-		<div class="imgDiv" @click="linkIndex()">
-			<img class="hardware" src="@/assets/images/home/hardware.png" />
-			<div>
-				<img src="../assets/images/home/cable.png" />
-			</div>
-		</div>
-		<h3>请插入JuBiter</h3>
-	</div>
+  <div class="home">
+    <p>军民融合区块链系统</p>
+    <div class="imgDiv" @click="linkIndex()">
+      <img class="hardware" src="@/assets/images/home/hardware.png" />
+      <div>
+        <img src="../assets/images/home/cable.png" />
+      </div>
+    </div>
+    <h3>请插入JuBiter</h3>
+  </div>
 </template>
 
 <script>
@@ -52,21 +52,21 @@ export default {
   },
   methods: {
     linkIndex: function() {
-      let self = this;
-      var param = { deviceSn: "JUBLD20051200005" };
-      deviceLogin(param)
-        .then(function(res) {
-          if (res.code == "ok-000000") {
-            self.$router.push({
-              path: "/Jubiter/cz/copyright"
-            });
-          } else {
-            alert(res.msg);
-          }
-        })
-        .catch(function(error) {
-          alert(error);
-        });
+      // let self = this;
+      // var param = { deviceSn: "JUBLD20051200005" };
+      // deviceLogin(param)
+      //   .then(function(res) {
+      //     if (res.code == "ok-000000") {
+      //       self.$router.push({
+      //         path: "/Jubiter/cz/copyright"
+      //       });
+      //     } else {
+      //       alert(res.msg);
+      //     }
+      //   })
+      //   .catch(function(error) {
+      //     alert(error);
+      //   });
     }
   }
 };
@@ -86,13 +86,13 @@ export default {
   align-items: center;
   background: url(../assets/images/home/bg.png);
   overflow: hidden;
-  p{
-	    position: absolute;
-	    top: 0;
-	    color: white;
-	    margin-top: 70px;
-	    font-size: 40px;
-	    letter-spacing: 2px;
+  p {
+    position: absolute;
+    top: 0;
+    color: white;
+    margin-top: 70px;
+    font-size: 40px;
+    letter-spacing: 2px;
   }
   .imgDiv {
     width: 100%;
