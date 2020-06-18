@@ -33,22 +33,36 @@ export default {
       deep: true
     }
   },
+
   methods: {
     submitAuth() {
       let self = this;
       var param = { hash: self.apply.hash, holder: self.apply.to };
-      addCredentialAuthClaim(param)
-        .then(function(res) {
-          if (res.code == "ok-000000") {
-            self.$parent.changeApplyStatus({ id: self.apply.id, status: 2 });
-            self.$router.push({
-              path: "/Jubiter/cz/processed"
+      self.$parent.show = true;
+      self.$socketApi.jubiterOper
+        .statement(param.hash, param.holder)
+        .then(() => {
+          self.$parent.show = false;
+          addCredentialAuthClaim(param)
+            .then(function(res) {
+              if (res.code == "ok-000000") {
+                self.$parent.changeApplyStatus({
+                  id: self.apply.id,
+                  status: 2
+                });
+                self.$router.push({
+                  path: "/Jubiter/cz/processed"
+                });
+              } else {
+                alert(res.msg);
+              }
+            })
+            .catch(function(error) {
+              alert(error);
             });
-          } else {
-            alert(res.msg);
-          }
         })
         .catch(function(error) {
+          self.$parent.show = false;
           alert(error);
         });
     }
@@ -73,13 +87,12 @@ export default {
       max-width: 600px;
       /* border: 1px solid; */
       min-height: 25px;
-	  padding: 10px 15px;
+      padding: 10px 15px;
       background-color: white;
       box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
-	  word-break: break-all;
-	  line-height: 25px;
-	  
+      word-break: break-all;
+      line-height: 25px;
     }
   }
   div:nth-child(1) {

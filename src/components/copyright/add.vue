@@ -6,7 +6,7 @@
           <el-upload
             class="input"
             ref="upload"
-            action="jubiter-credential-web/admin/credential/add.action"
+            action="http://39.102.47.108:8888/jubiter-credential-web/admin/credential/add.action"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
             :on-change="handleChange"

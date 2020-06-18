@@ -2,16 +2,19 @@
   <div class="process">
     <left v-if="flag"></left>
     <right v-if="flag" :selectedApply.sync="selectedApply"></right>
+    <lookHardware v-show="show"></lookHardware>
   </div>
 </template>
 
 <script>
+import lookHardware from "@/components/statement/lookHardware.vue";
 import left from "@/components/processed/left.vue";
 import right from "@/components/processed/right.vue";
 import { changeApplyStatus } from "../../assets/api/authApply";
 export default {
   data: function() {
     return {
+      show: false,
       flag: false,
       applys: [],
       total: 0,
@@ -20,7 +23,8 @@ export default {
   },
   components: {
     left,
-    right
+    right,
+    lookHardware
   },
   beforeCreate() {
     var self = this;
@@ -82,7 +86,7 @@ a {
     // justify-content: center;
     align-items: center;
     flex-direction: column;
-	margin-top: 20%;
+    margin-top: 20%;
   }
 }
 </style>
